@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.SoftAdmin.mapper.TsupportMapper" >
+  <resultMap id="BaseResultMap" type="com.SoftAdmin.bean.Tsupport" >
+    <id column="tid" property="tid" jdbcType="INTEGER" />
+    <result column="tname" property="tname" jdbcType="VARCHAR" />
+    <result column="ttype" property="ttype" jdbcType="VARCHAR" />
+    <result column="ttypetwo" property="ttypetwo" jdbcType="VARCHAR" />
+    <result column="turl" property="turl" jdbcType="VARCHAR" />
+    <result column="tdis" property="tdis" jdbcType="VARCHAR" />
+    <result column="tEnglist" property="tenglist" jdbcType="VARCHAR" />
+    <result column="imgurl" property="imgurl" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    tid, tname, ttype, ttypetwo, turl, tdis, tEnglist, imgurl
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.SoftAdmin.bean.TsupportExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tsupport
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tsupport
+    where tid = #{tid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tsupport
+    where tid = #{tid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.SoftAdmin.bean.TsupportExample" >
+    delete from tsupport
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.SoftAdmin.bean.Tsupport" >
+    insert into tsupport (tid, tname, ttype, 
+      ttypetwo, turl, tdis, 
+      tEnglist, imgurl)
+    values (#{tid,jdbcType=INTEGER}, #{tname,jdbcType=VARCHAR}, #{ttype,jdbcType=VARCHAR}, 
+      #{ttypetwo,jdbcType=VARCHAR}, #{turl,jdbcType=VARCHAR}, #{tdis,jdbcType=VARCHAR}, 
+      #{tenglist,jdbcType=VARCHAR}, #{imgurl,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.SoftAdmin.bean.Tsupport" >
+    insert into tsupport
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="tid != null" >
+        tid,
+      </if>
+      <if test="tname != null" >
+        tname,
+      </if>
+      <if test="ttype != null" >
+        ttype,
+      </if>
+      <if test="ttypetwo != null" >
+        ttypetwo,
+      </if>
+      <if test="turl != null" >
+        turl,
+      </if>
+      <if test="tdis != null" >
+        tdis,
+      </if>
+      <if test="tenglist != null" >
+        tEnglist,
+      </if>
+      <if test="imgurl != null" >
+        imgurl,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="tid != null" >
+        #{tid,jdbcType=INTEGER},
+      </if>
+      <if test="tname != null" >
+        #{tname,jdbcType=VARCHAR},
+      </if>
+      <if test="ttype != null" >
+        #{ttype,jdbcType=VARCHAR},
+      </if>
+      <if test="ttypetwo != null" >
+        #{ttypetwo,jdbcType=VARCHAR},
+      </if>
+      <if test="turl != null" >
+        #{turl,jdbcType=VARCHAR},
+      </if>
+      <if test="tdis != null" >
+        #{tdis,jdbcType=VARCHAR},
+      </if>
+      <if test="tenglist != null" >
+        #{tenglist,jdbcType=VARCHAR},
+      </if>
+      <if test="imgurl != null" >
+        #{imgurl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.SoftAdmin.bean.TsupportExample" resultType="java.lang.Integer" >
+    select count(*) from tsupport
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tsupport
+    <set >
+      <if test="record.tid != null" >
+        tid = #{record.tid,jdbcType=INTEGER},
+      </if>
+      <if test="record.tname != null" >
+        tname = #{record.tname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ttype != null" >
+        ttype = #{record.ttype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ttypetwo != null" >
+        ttypetwo = #{record.ttypetwo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.turl != null" >
+        turl = #{record.turl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tdis != null" >
+        tdis = #{record.tdis,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tenglist != null" >
+        tEnglist = #{record.tenglist,jdbcType=VARCHAR},
+      </if>
+      <if test="record.imgurl != null" >
+        imgurl = #{record.imgurl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tsupport
+    set tid = #{record.tid,jdbcType=INTEGER},
+      tname = #{record.tname,jdbcType=VARCHAR},
+      ttype = #{record.ttype,jdbcType=VARCHAR},
+      ttypetwo = #{record.ttypetwo,jdbcType=VARCHAR},
+      turl = #{record.turl,jdbcType=VARCHAR},
+      tdis = #{record.tdis,jdbcType=VARCHAR},
+      tEnglist = #{record.tenglist,jdbcType=VARCHAR},
+      imgurl = #{record.imgurl,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.SoftAdmin.bean.Tsupport" >
+    update tsupport
+    <set >
+      <if test="tname != null" >
+        tname = #{tname,jdbcType=VARCHAR},
+      </if>
+      <if test="ttype != null" >
+        ttype = #{ttype,jdbcType=VARCHAR},
+      </if>
+      <if test="ttypetwo != null" >
+        ttypetwo = #{ttypetwo,jdbcType=VARCHAR},
+      </if>
+      <if test="turl != null" >
+        turl = #{turl,jdbcType=VARCHAR},
+      </if>
+      <if test="tdis != null" >
+        tdis = #{tdis,jdbcType=VARCHAR},
+      </if>
+      <if test="tenglist != null" >
+        tEnglist = #{tenglist,jdbcType=VARCHAR},
+      </if>
+      <if test="imgurl != null" >
+        imgurl = #{imgurl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where tid = #{tid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.SoftAdmin.bean.Tsupport" >
+    update tsupport
+    set tname = #{tname,jdbcType=VARCHAR},
+      ttype = #{ttype,jdbcType=VARCHAR},
+      ttypetwo = #{ttypetwo,jdbcType=VARCHAR},
+      turl = #{turl,jdbcType=VARCHAR},
+      tdis = #{tdis,jdbcType=VARCHAR},
+      tEnglist = #{tenglist,jdbcType=VARCHAR},
+      imgurl = #{imgurl,jdbcType=VARCHAR}
+    where tid = #{tid,jdbcType=INTEGER}
+  </update>
+</mapper>

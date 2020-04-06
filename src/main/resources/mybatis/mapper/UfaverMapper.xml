@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.SoftAdmin.mapper.UfaverMapper" >
+  <resultMap id="BaseResultMap" type="com.SoftAdmin.bean.Ufaver" >
+    <result column="usernamer" property="usernamer" jdbcType="VARCHAR" />
+    <result column="uid" property="uid" jdbcType="INTEGER" />
+    <result column="tim" property="tim" jdbcType="VARCHAR" />
+    <result column="dis" property="dis" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    usernamer, uid, tim, dis
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.SoftAdmin.bean.UfaverExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ufaver
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.SoftAdmin.bean.UfaverExample" >
+    delete from ufaver
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.SoftAdmin.bean.Ufaver" >
+    insert into ufaver (usernamer, uid, tim, 
+      dis)
+    values (#{usernamer,jdbcType=VARCHAR}, #{uid,jdbcType=INTEGER}, #{tim,jdbcType=VARCHAR}, 
+      #{dis,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.SoftAdmin.bean.Ufaver" >
+    insert into ufaver
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="usernamer != null" >
+        usernamer,
+      </if>
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="tim != null" >
+        tim,
+      </if>
+      <if test="dis != null" >
+        dis,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="usernamer != null" >
+        #{usernamer,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="tim != null" >
+        #{tim,jdbcType=VARCHAR},
+      </if>
+      <if test="dis != null" >
+        #{dis,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.SoftAdmin.bean.UfaverExample" resultType="java.lang.Integer" >
+    select count(*) from ufaver
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update ufaver
+    <set >
+      <if test="record.usernamer != null" >
+        usernamer = #{record.usernamer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uid != null" >
+        uid = #{record.uid,jdbcType=INTEGER},
+      </if>
+      <if test="record.tim != null" >
+        tim = #{record.tim,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dis != null" >
+        dis = #{record.dis,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update ufaver
+    set usernamer = #{record.usernamer,jdbcType=VARCHAR},
+      uid = #{record.uid,jdbcType=INTEGER},
+      tim = #{record.tim,jdbcType=VARCHAR},
+      dis = #{record.dis,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.SoftAdmin.mapper.BlogtoolsMapper" >
+  <resultMap id="BaseResultMap" type="com.SoftAdmin.bean.Blogtools" >
+    <id column="nid" property="nid" jdbcType="INTEGER" />
+    <result column="webname" property="webname" jdbcType="VARCHAR" />
+    <result column="weburl" property="weburl" jdbcType="VARCHAR" />
+    <result column="webdis" property="webdis" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    nid, webname, weburl, webdis
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.SoftAdmin.bean.BlogtoolsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from blogtools
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from blogtools
+    where nid = #{nid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from blogtools
+    where nid = #{nid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.SoftAdmin.bean.BlogtoolsExample" >
+    delete from blogtools
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.SoftAdmin.bean.Blogtools" >
+    insert into blogtools (nid, webname, weburl, 
+      webdis)
+    values (#{nid,jdbcType=INTEGER}, #{webname,jdbcType=VARCHAR}, #{weburl,jdbcType=VARCHAR}, 
+      #{webdis,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.SoftAdmin.bean.Blogtools" >
+    insert into blogtools
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="nid != null" >
+        nid,
+      </if>
+      <if test="webname != null" >
+        webname,
+      </if>
+      <if test="weburl != null" >
+        weburl,
+      </if>
+      <if test="webdis != null" >
+        webdis,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="nid != null" >
+        #{nid,jdbcType=INTEGER},
+      </if>
+      <if test="webname != null" >
+        #{webname,jdbcType=VARCHAR},
+      </if>
+      <if test="weburl != null" >
+        #{weburl,jdbcType=VARCHAR},
+      </if>
+      <if test="webdis != null" >
+        #{webdis,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.SoftAdmin.bean.BlogtoolsExample" resultType="java.lang.Integer" >
+    select count(*) from blogtools
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update blogtools
+    <set >
+      <if test="record.nid != null" >
+        nid = #{record.nid,jdbcType=INTEGER},
+      </if>
+      <if test="record.webname != null" >
+        webname = #{record.webname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.weburl != null" >
+        weburl = #{record.weburl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.webdis != null" >
+        webdis = #{record.webdis,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update blogtools
+    set nid = #{record.nid,jdbcType=INTEGER},
+      webname = #{record.webname,jdbcType=VARCHAR},
+      weburl = #{record.weburl,jdbcType=VARCHAR},
+      webdis = #{record.webdis,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.SoftAdmin.bean.Blogtools" >
+    update blogtools
+    <set >
+      <if test="webname != null" >
+        webname = #{webname,jdbcType=VARCHAR},
+      </if>
+      <if test="weburl != null" >
+        weburl = #{weburl,jdbcType=VARCHAR},
+      </if>
+      <if test="webdis != null" >
+        webdis = #{webdis,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where nid = #{nid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.SoftAdmin.bean.Blogtools" >
+    update blogtools
+    set webname = #{webname,jdbcType=VARCHAR},
+      weburl = #{weburl,jdbcType=VARCHAR},
+      webdis = #{webdis,jdbcType=VARCHAR}
+    where nid = #{nid,jdbcType=INTEGER}
+  </update>
+</mapper>

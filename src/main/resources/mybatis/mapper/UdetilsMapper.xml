@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.SoftAdmin.mapper.UdetilsMapper" >
+  <resultMap id="BaseResultMap" type="com.SoftAdmin.bean.Udetils" >
+    <id column="udid" property="udid" jdbcType="INTEGER" />
+    <result column="ufname" property="ufname" jdbcType="VARCHAR" />
+    <result column="umail" property="umail" jdbcType="VARCHAR" />
+    <result column="usex" property="usex" jdbcType="VARCHAR" />
+    <result column="uage" property="uage" jdbcType="INTEGER" />
+    <result column="udis" property="udis" jdbcType="VARCHAR" />
+    <result column="uphone" property="uphone" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    udid, ufname, umail, usex, uage, udis, uphone
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.SoftAdmin.bean.UdetilsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from udetils
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from udetils
+    where udid = #{udid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from udetils
+    where udid = #{udid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.SoftAdmin.bean.UdetilsExample" >
+    delete from udetils
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.SoftAdmin.bean.Udetils" >
+    insert into udetils (udid, ufname, umail, 
+      usex, uage, udis, uphone
+      )
+    values (#{udid,jdbcType=INTEGER}, #{ufname,jdbcType=VARCHAR}, #{umail,jdbcType=VARCHAR}, 
+      #{usex,jdbcType=VARCHAR}, #{uage,jdbcType=INTEGER}, #{udis,jdbcType=VARCHAR}, #{uphone,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.SoftAdmin.bean.Udetils" >
+    insert into udetils
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="udid != null" >
+        udid,
+      </if>
+      <if test="ufname != null" >
+        ufname,
+      </if>
+      <if test="umail != null" >
+        umail,
+      </if>
+      <if test="usex != null" >
+        usex,
+      </if>
+      <if test="uage != null" >
+        uage,
+      </if>
+      <if test="udis != null" >
+        udis,
+      </if>
+      <if test="uphone != null" >
+        uphone,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="udid != null" >
+        #{udid,jdbcType=INTEGER},
+      </if>
+      <if test="ufname != null" >
+        #{ufname,jdbcType=VARCHAR},
+      </if>
+      <if test="umail != null" >
+        #{umail,jdbcType=VARCHAR},
+      </if>
+      <if test="usex != null" >
+        #{usex,jdbcType=VARCHAR},
+      </if>
+      <if test="uage != null" >
+        #{uage,jdbcType=INTEGER},
+      </if>
+      <if test="udis != null" >
+        #{udis,jdbcType=VARCHAR},
+      </if>
+      <if test="uphone != null" >
+        #{uphone,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.SoftAdmin.bean.UdetilsExample" resultType="java.lang.Integer" >
+    select count(*) from udetils
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update udetils
+    <set >
+      <if test="record.udid != null" >
+        udid = #{record.udid,jdbcType=INTEGER},
+      </if>
+      <if test="record.ufname != null" >
+        ufname = #{record.ufname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.umail != null" >
+        umail = #{record.umail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.usex != null" >
+        usex = #{record.usex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uage != null" >
+        uage = #{record.uage,jdbcType=INTEGER},
+      </if>
+      <if test="record.udis != null" >
+        udis = #{record.udis,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uphone != null" >
+        uphone = #{record.uphone,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update udetils
+    set udid = #{record.udid,jdbcType=INTEGER},
+      ufname = #{record.ufname,jdbcType=VARCHAR},
+      umail = #{record.umail,jdbcType=VARCHAR},
+      usex = #{record.usex,jdbcType=VARCHAR},
+      uage = #{record.uage,jdbcType=INTEGER},
+      udis = #{record.udis,jdbcType=VARCHAR},
+      uphone = #{record.uphone,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.SoftAdmin.bean.Udetils" >
+    update udetils
+    <set >
+      <if test="ufname != null" >
+        ufname = #{ufname,jdbcType=VARCHAR},
+      </if>
+      <if test="umail != null" >
+        umail = #{umail,jdbcType=VARCHAR},
+      </if>
+      <if test="usex != null" >
+        usex = #{usex,jdbcType=VARCHAR},
+      </if>
+      <if test="uage != null" >
+        uage = #{uage,jdbcType=INTEGER},
+      </if>
+      <if test="udis != null" >
+        udis = #{udis,jdbcType=VARCHAR},
+      </if>
+      <if test="uphone != null" >
+        uphone = #{uphone,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where udid = #{udid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.SoftAdmin.bean.Udetils" >
+    update udetils
+    set ufname = #{ufname,jdbcType=VARCHAR},
+      umail = #{umail,jdbcType=VARCHAR},
+      usex = #{usex,jdbcType=VARCHAR},
+      uage = #{uage,jdbcType=INTEGER},
+      udis = #{udis,jdbcType=VARCHAR},
+      uphone = #{uphone,jdbcType=VARCHAR}
+    where udid = #{udid,jdbcType=INTEGER}
+  </update>
+  
+  <!-- Udetils getAllUsers(); -->
+  <select id="getAllUsers" resultMap="BaseResultMap">
+  	select ufname,umail,usex,uage,udis,uphone from udetils limit ${beforelimit},${afterlimit}
+  </select>
+  
+  
+  <!-- List<Udetils> getUdetilsWhichUseToEdit(@Param("username") String username);
+   -->
+   <select id="getUdetilsWhichUseToEdit" resultMap="BaseResultMap">
+   	select * from udetils where uphone=#{username}
+   </select>
+   
+   <!-- int updateUdetilsByUphone(Udetils udetils); -->
+   <update id="updateUdetilsByUphone" parameterType="com.SoftAdmin.bean.Udetils" >
+    update udetils set ufname = #{ufname}, usex = #{usex}, uage = #{uage} where uphone = #{uphone}
+  </update>
+  
+  <!-- int addNewUser(@Param("fname") String fname,@Param("username")  String username); -->
+  <insert id="addNewUser" parameterType="com.SoftAdmin.bean.Udetils" >
+    insert into udetils (ufname,uphone) values (#{fname},#{username})
+  </insert>
+  
+  <!-- int deleteUser(@Param("username") String username); -->
+  <delete id="deleteUser" parameterType="com.SoftAdmin.bean.Udetils">
+  	delete from udetils where uphone=#{username}
+  </delete>
+  
+  <!-- List<Udetils> selectUsersByName(@Param("username") String username); -->
+   <select id="selectUsersByName" resultMap="BaseResultMap">
+  	select usex,ufname,umail from udetils where uphone like '%${username}%' limit 0,1
+  </select>
+  
+</mapper>

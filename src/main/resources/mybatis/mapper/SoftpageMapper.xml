@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.SoftAdmin.mapper.SoftpageMapper" >
+  <resultMap id="BaseResultMap" type="com.SoftAdmin.bean.Softpage" >
+    <id column="softid" property="softid" jdbcType="INTEGER" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="softname" property="softname" jdbcType="VARCHAR" />
+    <result column="disline" property="disline" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    softid, url, softname, disline
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.SoftAdmin.bean.SoftpageExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from softpage
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from softpage
+    where softid = #{softid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from softpage
+    where softid = #{softid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.SoftAdmin.bean.SoftpageExample" >
+    delete from softpage
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.SoftAdmin.bean.Softpage" >
+    insert into softpage (softid, url, softname, 
+      disline)
+    values (#{softid,jdbcType=INTEGER}, #{url,jdbcType=VARCHAR}, #{softname,jdbcType=VARCHAR}, 
+      #{disline,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.SoftAdmin.bean.Softpage" >
+    insert into softpage
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="softid != null" >
+        softid,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="softname != null" >
+        softname,
+      </if>
+      <if test="disline != null" >
+        disline,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="softid != null" >
+        #{softid,jdbcType=INTEGER},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="softname != null" >
+        #{softname,jdbcType=VARCHAR},
+      </if>
+      <if test="disline != null" >
+        #{disline,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.SoftAdmin.bean.SoftpageExample" resultType="java.lang.Integer" >
+    select count(*) from softpage
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update softpage
+    <set >
+      <if test="record.softid != null" >
+        softid = #{record.softid,jdbcType=INTEGER},
+      </if>
+      <if test="record.url != null" >
+        url = #{record.url,jdbcType=VARCHAR},
+      </if>
+      <if test="record.softname != null" >
+        softname = #{record.softname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.disline != null" >
+        disline = #{record.disline,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update softpage
+    set softid = #{record.softid,jdbcType=INTEGER},
+      url = #{record.url,jdbcType=VARCHAR},
+      softname = #{record.softname,jdbcType=VARCHAR},
+      disline = #{record.disline,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.SoftAdmin.bean.Softpage" >
+    update softpage
+    <set >
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="softname != null" >
+        softname = #{softname,jdbcType=VARCHAR},
+      </if>
+      <if test="disline != null" >
+        disline = #{disline,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where softid = #{softid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.SoftAdmin.bean.Softpage" >
+    update softpage
+    set url = #{url,jdbcType=VARCHAR},
+      softname = #{softname,jdbcType=VARCHAR},
+      disline = #{disline,jdbcType=VARCHAR}
+    where softid = #{softid,jdbcType=INTEGER}
+  </update>
+</mapper>

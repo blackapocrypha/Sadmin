@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.SoftAdmin.mapper.BlogTxttalkMapper" >
+  <resultMap id="BaseResultMap" type="com.SoftAdmin.bean.BlogTxttalk" >
+    <id column="btid" property="btid" jdbcType="INTEGER" />
+    <result column="tname" property="tname" jdbcType="VARCHAR" />
+    <result column="kissid" property="kissid" jdbcType="INTEGER" />
+    <result column="talktime" property="talktime" jdbcType="VARCHAR" />
+    <result column="talk" property="talk" jdbcType="VARCHAR" />
+    <result column="imgurl" property="imgurl" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    btid, tname, kissid, talktime, talk, imgurl
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.SoftAdmin.bean.BlogTxttalkExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from blog_txttalk
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from blog_txttalk
+    where btid = #{btid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from blog_txttalk
+    where btid = #{btid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.SoftAdmin.bean.BlogTxttalkExample" >
+    delete from blog_txttalk
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.SoftAdmin.bean.BlogTxttalk" >
+    insert into blog_txttalk (btid, tname, kissid, 
+      talktime, talk, imgurl
+      )
+    values (#{btid,jdbcType=INTEGER}, #{tname,jdbcType=VARCHAR}, #{kissid,jdbcType=INTEGER}, 
+      #{talktime,jdbcType=VARCHAR}, #{talk,jdbcType=VARCHAR}, #{imgurl,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.SoftAdmin.bean.BlogTxttalk" >
+    insert into blog_txttalk
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="btid != null" >
+        btid,
+      </if>
+      <if test="tname != null" >
+        tname,
+      </if>
+      <if test="kissid != null" >
+        kissid,
+      </if>
+      <if test="talktime != null" >
+        talktime,
+      </if>
+      <if test="talk != null" >
+        talk,
+      </if>
+      <if test="imgurl != null" >
+        imgurl,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="btid != null" >
+        #{btid,jdbcType=INTEGER},
+      </if>
+      <if test="tname != null" >
+        #{tname,jdbcType=VARCHAR},
+      </if>
+      <if test="kissid != null" >
+        #{kissid,jdbcType=INTEGER},
+      </if>
+      <if test="talktime != null" >
+        #{talktime,jdbcType=VARCHAR},
+      </if>
+      <if test="talk != null" >
+        #{talk,jdbcType=VARCHAR},
+      </if>
+      <if test="imgurl != null" >
+        #{imgurl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.SoftAdmin.bean.BlogTxttalkExample" resultType="java.lang.Integer" >
+    select count(*) from blog_txttalk
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update blog_txttalk
+    <set >
+      <if test="record.btid != null" >
+        btid = #{record.btid,jdbcType=INTEGER},
+      </if>
+      <if test="record.tname != null" >
+        tname = #{record.tname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.kissid != null" >
+        kissid = #{record.kissid,jdbcType=INTEGER},
+      </if>
+      <if test="record.talktime != null" >
+        talktime = #{record.talktime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.talk != null" >
+        talk = #{record.talk,jdbcType=VARCHAR},
+      </if>
+      <if test="record.imgurl != null" >
+        imgurl = #{record.imgurl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update blog_txttalk
+    set btid = #{record.btid,jdbcType=INTEGER},
+      tname = #{record.tname,jdbcType=VARCHAR},
+      kissid = #{record.kissid,jdbcType=INTEGER},
+      talktime = #{record.talktime,jdbcType=VARCHAR},
+      talk = #{record.talk,jdbcType=VARCHAR},
+      imgurl = #{record.imgurl,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.SoftAdmin.bean.BlogTxttalk" >
+    update blog_txttalk
+    <set >
+      <if test="tname != null" >
+        tname = #{tname,jdbcType=VARCHAR},
+      </if>
+      <if test="kissid != null" >
+        kissid = #{kissid,jdbcType=INTEGER},
+      </if>
+      <if test="talktime != null" >
+        talktime = #{talktime,jdbcType=VARCHAR},
+      </if>
+      <if test="talk != null" >
+        talk = #{talk,jdbcType=VARCHAR},
+      </if>
+      <if test="imgurl != null" >
+        imgurl = #{imgurl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where btid = #{btid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.SoftAdmin.bean.BlogTxttalk" >
+    update blog_txttalk
+    set tname = #{tname,jdbcType=VARCHAR},
+      kissid = #{kissid,jdbcType=INTEGER},
+      talktime = #{talktime,jdbcType=VARCHAR},
+      talk = #{talk,jdbcType=VARCHAR},
+      imgurl = #{imgurl,jdbcType=VARCHAR}
+    where btid = #{btid,jdbcType=INTEGER}
+  </update>
+</mapper>
