@@ -27,4 +27,10 @@ public interface BlogpcgameMapper {
     int updateByPrimaryKeySelective(Blogpcgame record);
 
     int updateByPrimaryKey(Blogpcgame record);
+
+	List<Blogpcgame> getAllpcgames(@Param("beforelimit") Integer beforelimit,@Param("afterlimit")  Integer afterlimit);
+
+	int howmanypcgame();
+
+	Blogpcgame selectpcgameByName(@Param("appname") String appname);
 }

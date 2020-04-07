@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.SoftAdmin.mapper.BlogpcgameMapper" >
-  <resultMap id="BaseResultMap" type="com.SoftAdmin.bean.Blogpcgame" >
+<mapper namespace="com.SoftAdmin.mapper.BlogmusicMapper" >
+  <resultMap id="BaseResultMap" type="com.SoftAdmin.bean.Blogmusic" >
     <id column="nid" property="nid" jdbcType="INTEGER" />
     <result column="appname" property="appname" jdbcType="VARCHAR" />
     <result column="appimgurl" property="appimgurl" jdbcType="VARCHAR" />
@@ -69,13 +69,13 @@
   <sql id="Base_Column_List" >
     nid, appname, appimgurl, appdis, appdownurl
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.SoftAdmin.bean.BlogpcgameExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.SoftAdmin.bean.BlogmusicExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from blogpcgame
+    from blogmusic
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -86,27 +86,27 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from blogpcgame
+    from blogmusic
     where nid = #{nid,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from blogpcgame
+    delete from blogmusic
     where nid = #{nid,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.SoftAdmin.bean.BlogpcgameExample" >
-    delete from blogpcgame
+  <delete id="deleteByExample" parameterType="com.SoftAdmin.bean.BlogmusicExample" >
+    delete from blogmusic
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.SoftAdmin.bean.Blogpcgame" >
-    insert into blogpcgame (nid, appname, appimgurl, 
+  <insert id="insert" parameterType="com.SoftAdmin.bean.Blogmusic" >
+    insert into blogmusic (nid, appname, appimgurl, 
       appdis, appdownurl)
     values (#{nid,jdbcType=INTEGER}, #{appname,jdbcType=VARCHAR}, #{appimgurl,jdbcType=VARCHAR}, 
       #{appdis,jdbcType=VARCHAR}, #{appdownurl,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.SoftAdmin.bean.Blogpcgame" >
-    insert into blogpcgame
+  <insert id="insertSelective" parameterType="com.SoftAdmin.bean.Blogmusic" >
+    insert into blogmusic
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="nid != null" >
         nid,
@@ -142,14 +142,14 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.SoftAdmin.bean.BlogpcgameExample" resultType="java.lang.Integer" >
-    select count(*) from blogpcgame
+  <select id="countByExample" parameterType="com.SoftAdmin.bean.BlogmusicExample" resultType="java.lang.Integer" >
+    select count(*) from blogmusic
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update blogpcgame
+    update blogmusic
     <set >
       <if test="record.nid != null" >
         nid = #{record.nid,jdbcType=INTEGER},
@@ -172,7 +172,7 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update blogpcgame
+    update blogmusic
     set nid = #{record.nid,jdbcType=INTEGER},
       appname = #{record.appname,jdbcType=VARCHAR},
       appimgurl = #{record.appimgurl,jdbcType=VARCHAR},
@@ -182,8 +182,8 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.SoftAdmin.bean.Blogpcgame" >
-    update blogpcgame
+  <update id="updateByPrimaryKeySelective" parameterType="com.SoftAdmin.bean.Blogmusic" >
+    update blogmusic
     <set >
       <if test="appname != null" >
         appname = #{appname,jdbcType=VARCHAR},
@@ -200,8 +200,8 @@
     </set>
     where nid = #{nid,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.SoftAdmin.bean.Blogpcgame" >
-    update blogpcgame
+  <update id="updateByPrimaryKey" parameterType="com.SoftAdmin.bean.Blogmusic" >
+    update blogmusic
     set appname = #{appname,jdbcType=VARCHAR},
       appimgurl = #{appimgurl,jdbcType=VARCHAR},
       appdis = #{appdis,jdbcType=VARCHAR},
@@ -209,19 +209,18 @@
     where nid = #{nid,jdbcType=INTEGER}
   </update>
   
-  <!-- List<Blogpcgame> getAllpcgames(@Param("beforelimit") Integer beforelimit,@Param("afterlimit")  Integer afterlimit); -->
-  <select id="getAllpcgames" resultMap="BaseResultMap">
-  	select * from blogpcgame limit #{beforelimit},#{afterlimit}
+  <!-- List<Blogmusic> getAllmusic(@Param("beforelimit") Integer beforelimit,@Param("beforelimit")  Integer afterlimit); -->
+  <select id="getAllmusic" resultMap="BaseResultMap">
+  	select * from blogmusic limit #{beforelimit},#{afterlimit}
   </select>
   
-  <!-- int howmanypcgame(); -->
-  <select id="howmanypcgame" resultType="java.lang.Integer">
-  	select count(*) from blogpcgame
+  <!-- int howmanymusic(); -->
+  <select id="howmanymusic" resultType="java.lang.Integer">
+  select count(*) from blogmusic
   </select>
   
-  <!-- Blogpcgame selectpcgameByName(@Param("appname") String appname); -->
-  <select id="selectpcgameByName" resultMap="BaseResultMap">
-  	select * from blogpcgame where appname like '%${appname}%' limit 0,1
+  <!-- Blogmusic selectmusicByName(@Param("appname")  String appname); -->
+  <select id="selectmusicByName" resultMap="BaseResultMap">
+  	select * from blogmusic where appname like '%${appname}%' limit 0,1
   </select>
-  
 </mapper>

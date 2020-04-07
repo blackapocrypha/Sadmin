@@ -35,7 +35,7 @@
 	   $('#tbmessage').html(" ");
    	$.ajax({//ajax begin
 		type:'GET',
-     	url:'${pageContext.request.contextPath}/Bpcgame/getAllpcgames?number='+fid,
+     	url:'${pageContext.request.contextPath}/Bmusic/getAllmusic?number='+fid,
      	dataType:'json',
      	async: false,
      	success:function(rs){ 		
@@ -51,7 +51,7 @@
                      +"<td>"+item.appdis+"</td>"
                      +"<td> <a href='"+item.appdownurl+"'>"+item.appdownurl+"</a></td>"
                      +"<td class='td-manage'>"    
-                     +"<a title='编辑'  onclick=\"xadmin.open('编辑','Blog_pcgame-edit.jsp?nid="+item.nid+"',600,400)\" href='javascript:;'>"
+                     +"<a title='编辑'  onclick=\"xadmin.open('编辑','Blog_music-edit.jsp?nid="+item.nid+"',600,400)\" href='javascript:;'>"
                      +" <i class='layui-icon'>&#xe642;</i> </a>"                 
                      +"<a title='删除' onclick=\"checkdelete("+item.nid+")\" href='javascript:;' >"
                      +" <i class='layui-icon'>&#xe640;</i>  </a></td>"    
@@ -67,7 +67,7 @@
 	   
 	   $.ajax({
 			type:'GET',
-	     	url:'${pageContext.request.contextPath}/Bpcgame/howmanypcgame',
+	     	url:'${pageContext.request.contextPath}/Bmusic/howmanymusic',
 	     	dataType:'json',
 	     	async: false,
 	     	success:function(rs){ 
@@ -80,7 +80,7 @@
 	//根据后台数据打印下标所在
    $.ajax({
 	   	type:"GET",
-	   	url:"${pageContext.request.contextPath}/Bpcgame/returnPage",
+	   	url:"${pageContext.request.contextPath}/Bmusic/returnPage",
 	   	datatype:"json",
 	   	async: false,
 	   	success:function(rs){
@@ -94,21 +94,21 @@
 	                        +"<a class='next'  href=''>&gt;&gt;</a>");
 	   			} if(parseInt(usersnumber)>=2){
 	   				$("#countpage").html("<a class='prev'  id='prev' onclick='goprev()'  href='javascript:;'>&lt;&lt;</a>"
-	   						+"<a class='num'  href='Bpcgame/changePage?num=1'>首页</a>"        
+	   						+"<a class='num'  href='Bmusic/changePage?num=1'>首页</a>"        
 	   						+"<span class='current' id='currentthis'>"+rs+"</span>"
-	                        +"<a class='num' onclick='chosenthis("+(parseInt(rs)+1)+")' href='Bpcgame/changePage?num="+(parseInt(rs)+1)+"'>"+(parseInt(rs)+1)+"</a>"
-	                        +"<a class='num' onclick='chosenthis("+(parseInt(rs)+2)+")'  href='Bpcgame/changePage?num="+(parseInt(rs)+2)+"'>"+(parseInt(rs)+2)+"</a>"
-	                        +"<a class='num'  href='Bpcgame/changePage?num="+usersnumber+"'>尾页</a>" 
+	                        +"<a class='num' onclick='chosenthis("+(parseInt(rs)+1)+")' href='Bmusic/changePage?num="+(parseInt(rs)+1)+"'>"+(parseInt(rs)+1)+"</a>"
+	                        +"<a class='num' onclick='chosenthis("+(parseInt(rs)+2)+")'  href='Bmusic/changePage?num="+(parseInt(rs)+2)+"'>"+(parseInt(rs)+2)+"</a>"
+	                        +"<a class='num'  href='Bmusic/changePage?num="+usersnumber+"'>尾页</a>" 
 	                        +"<a class='next' id='next' onclick='gonext()' href='javascript:;'>&gt;&gt;</a>");
 	   			}
 	   		
 	   		}else{
 	   			$("#countpage").html("<a class='prev' id='prev' onclick='goprev()' href=''>&lt;&lt;</a>"
-	   				    +"<a class='num'  href='Bpcgame/changePage?num=1'>首页</a>"
-	   				    +"<a class='num' onclick='chosenthis("+(parseInt(rs)-1)+")' href='Bpcgame/changePage?num="+(parseInt(rs)-1)+"'>"+(parseInt(rs)-1)+"</a>"
+	   				    +"<a class='num'  href='Bmusic/changePage?num=1'>首页</a>"
+	   				    +"<a class='num' onclick='chosenthis("+(parseInt(rs)-1)+")' href='Bmusic/changePage?num="+(parseInt(rs)-1)+"'>"+(parseInt(rs)-1)+"</a>"
                         +"<span class='current' id='currentthis'>"+rs+"</span>"
-                        +"<a class='num'  href='Bpcgame/changePage?num="+(parseInt(rs)+1)+"'>"+(parseInt(rs)+1)+"</a>" 
-                        +"<a class='num'  href='Bpcgame/changePage?num="+usersnumber+"'>尾页</a>" 
+                        +"<a class='num'  href='Bmusic/changePage?num="+(parseInt(rs)+1)+"'>"+(parseInt(rs)+1)+"</a>" 
+                        +"<a class='num'  href='Bmusic/changePage?num="+usersnumber+"'>尾页</a>" 
                         +"<a class='next' id='next' onclick='gonext()' href=''>&gt;&gt;</a>");
 	   		}
 	   	}// success end
@@ -160,7 +160,7 @@
                         
                         <div class="layui-card-header">
                             
-                            <button class="layui-btn" onclick="xadmin.open('添加游戏','./Blog_pcgame-add.jsp',600,400)"><i class="layui-icon"></i>添加</button>
+                            <button class="layui-btn" onclick="xadmin.open('添加音乐','./Blog_music-add.jsp',600,400)"><i class="layui-icon"></i>添加</button>
                         </div>
                         
                         <div class="layui-card-body layui-table-body layui-table-main">
@@ -171,9 +171,9 @@
                                       <input type="checkbox" lay-filter="checkall" name="" lay-skin="primary">
                                     </th>
                                     <th>ID</th>
-                                    <th>游戏名称</th>
+                                    <th>音乐名称</th>
                                     <th>图片</th>
-                                    <th>介绍</th>
+                                    <th>歌手</th>
                                    <th>下载</th>
                                     <th>操作</th></tr>
                                 </thead>
@@ -202,7 +202,7 @@
 	var currentthis = parseInt($("#currentthis").text());
 	//href='users/changePage?num="+(parseInt(rs)+1)+"
 	if(currentthis>=1){currentthis=currentthis+1;
-	$("#next").attr("href","Bpcgame/changePage?num="+currentthis);
+	$("#next").attr("href","Bmusic/changePage?num="+currentthis);
 	}	
  }
  
@@ -212,9 +212,9 @@
 	//href='users/changePage?num="+(parseInt(rs)+1)+"
 	
 	if(currentthis<=1){
-	$("#prev").attr("href","Bpcgame/changePage?num="+currentthis);
+	$("#prev").attr("href","Bmusic/changePage?num="+currentthis);
 	}else if(currentthis>1)	{currentthis=currentthis-1;
-		$("#prev").attr("href","Bpcgame/changePage?num="+currentthis);
+		$("#prev").attr("href","Bmusic/changePage?num="+currentthis);
 	}
  }
 
@@ -224,13 +224,13 @@
 	 var mohusearch = $("#mohusearch").val();	
 	 $.ajax({		 
 		 type:"POST",
-		 url:"${pageContext.request.contextPath}/Bpcgame/selectpcgameByName",
+		 url:"${pageContext.request.contextPath}/Bmusic/selectmusicByName",
 		 data:{"appname":mohusearch},
 		 async:false,
 		 dataType:"json",
 		 success:function(rs){
 			 $('#tbmessage').html("");
-				$('#tbmessage').append("<tr>"
+			 	$('#tbmessage').append("<tr>"
 	                     +"<td>"
 	                     +"<input type='checkbox' name='id' value='1' lay-skin='primary'>" 
 	                     +"</td>"
@@ -240,11 +240,11 @@
 	                     +"<td>"+rs.appdis+"</td>"
 	                     +"<td> <a href='"+rs.appdownurl+"'>"+rs.appdownurl+"</a></td>"
 	                     +"<td class='td-manage'>"    
-	                     +"<a title='编辑'  onclick=\"xadmin.open('编辑','Blog_pcgame-edit.jsp?nid="+rs.nid+"',600,400)\" href='javascript:;'>"
+	                     +"<a title='编辑'  onclick=\"xadmin.open('编辑','Blog_music-edit.jsp?nid="+rs.nid+"',600,400)\" href='javascript:;'>"
 	                     +" <i class='layui-icon'>&#xe642;</i> </a>"                 
 	                     +"<a title='删除' onclick=\"checkdelete("+rs.nid+")\" href='javascript:;' >"
 	                     +" <i class='layui-icon'>&#xe640;</i>  </a></td>"    
-	                  	 +"</tr>");	
+	                  	 +"</tr>");
 		 }
 	 })//ajax结束
  });
@@ -254,27 +254,27 @@
 		 var mohusearch = $("#mohusearch").val();	
 		 $.ajax({		 
 			 type:"POST",
-			 url:"${pageContext.request.contextPath}/Bpcgame/selectpcgameByName",
+			 url:"${pageContext.request.contextPath}/Bmusic/selectmusicByName",
 			 data:{"appname":mohusearch},
 			 async:false,
 			 dataType:"json",
 			 success:function(rs){
 				 $('#tbmessage').html("");
-				 $('#tbmessage').append("<tr>"
-	                     +"<td>"
-	                     +"<input type='checkbox' name='id' value='1' lay-skin='primary'>" 
-	                     +"</td>"
-	                     +"<td>"+rs.nid+"</td>"
-	                     +"<td>"+rs.appname+"</td>"
-	                     +"<td><img src='"+rs.appimgurl+"'></td>"
-	                     +"<td>"+rs.appdis+"</td>"
-	                     +"<td> <a href='"+rs.appdownurl+"'>"+rs.appdownurl+"</a></td>"
-	                     +"<td class='td-manage'>"    
-	                     +"<a title='编辑'  onclick=\"xadmin.open('编辑','Blog_pcgame-edit.jsp?nid="+rs.nid+"',600,400)\" href='javascript:;'>"
-	                     +" <i class='layui-icon'>&#xe642;</i> </a>"                 
-	                     +"<a title='删除' onclick=\"checkdelete("+rs.nid+")\" href='javascript:;' >"
-	                     +" <i class='layui-icon'>&#xe640;</i>  </a></td>"    
-	                  	 +"</tr>");	
+					$('#tbmessage').append("<tr>"
+		                     +"<td>"
+		                     +"<input type='checkbox' name='id' value='1' lay-skin='primary'>" 
+		                     +"</td>"
+		                     +"<td>"+rs.nid+"</td>"
+		                     +"<td>"+rs.appname+"</td>"
+		                     +"<td><img src='"+rs.appimgurl+"'></td>"
+		                     +"<td>"+rs.appdis+"</td>"
+		                     +"<td> <a href='"+rs.appdownurl+"'>"+rs.appdownurl+"</a></td>"
+		                     +"<td class='td-manage'>"    
+		                     +"<a title='编辑'  onclick=\"xadmin.open('编辑','Blog_music-edit.jsp?nid="+rs.nid+"',600,400)\" href='javascript:;'>"
+		                     +" <i class='layui-icon'>&#xe642;</i> </a>"                 
+		                     +"<a title='删除' onclick=\"checkdelete("+rs.nid+")\" href='javascript:;' >"
+		                     +" <i class='layui-icon'>&#xe640;</i>  </a></td>"    
+		                  	 +"</tr>");
 			 }
 		 })//ajax结束
 	 }
@@ -337,7 +337,7 @@ for(var i=1;i<=4;i++){
     	  if(confirm("确定要删除？")){
     		  $.ajax({
     			  type:"POST",
-    			  url:"Bpcgame/deletegames",
+    			  url:"Bmusic/deletemusic",
     			  data:{"nid":obj},
     			  async:true,
     			  success:function(rs){
