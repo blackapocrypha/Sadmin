@@ -208,4 +208,20 @@
       appdownurl = #{appdownurl,jdbcType=VARCHAR}
     where nid = #{nid,jdbcType=INTEGER}
   </update>
+  
+  
+  <!-- List<Blogtxt> getAllBooks(@Param("beforelimit") Integer beforelimit, @Param("afterlimit") Integer afterlimit); -->
+  <select id="getAllBooks"  resultMap="BaseResultMap">
+ 	 select * from blogtxt limit #{beforelimit},#{afterlimit}
+  </select>
+  
+  <!-- int howmanybooks(); -->
+  <select id="howmanybooks" resultType="java.lang.Integer">
+  	select count(*) from blogtxt
+  </select>
+  
+  <!-- Blogtxt selectbookByName(@Param("bookname") String bookname); -->
+  <select id="selectbookByName" resultMap="BaseResultMap">
+  	select * from blogtxt where appname like '%${bookname}%' or appdis like '%${bookname}%' limit 0,1
+  </select>
 </mapper>

@@ -27,4 +27,10 @@ public interface BlogtxtMapper {
     int updateByPrimaryKeySelective(Blogtxt record);
 
     int updateByPrimaryKey(Blogtxt record);
+
+	List<Blogtxt> getAllBooks(@Param("beforelimit") Integer beforelimit, @Param("afterlimit") Integer afterlimit);
+
+	int howmanybooks();
+
+	Blogtxt selectbookByName(@Param("bookname") String bookname);
 }

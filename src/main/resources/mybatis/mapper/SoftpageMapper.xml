@@ -193,4 +193,9 @@
       disline = #{disline,jdbcType=VARCHAR}
     where softid = #{softid,jdbcType=INTEGER}
   </update>
+  
+  <!-- int updateSoft(Softpage sp); -->
+   <update id="updateSoft" parameterType="com.SoftAdmin.bean.Softpage" >
+  	update softpage set softname = #{softname},url = #{url} where softid = #{softid}
+  </update>
 </mapper>

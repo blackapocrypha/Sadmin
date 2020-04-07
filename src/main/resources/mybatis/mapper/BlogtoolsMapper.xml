@@ -193,4 +193,30 @@
       webdis = #{webdis,jdbcType=VARCHAR}
     where nid = #{nid,jdbcType=INTEGER}
   </update>
+  
+  <!-- List<Blogtools> getAllBlogOnlineTools(@Param("beforelimit") Integer beforelimit,@Param("afterlimit") Integer afterlimit); -->
+<select id="getAllBlogOnlineTools" resultMap="BaseResultMap">
+	select * from blogtools limit #{beforelimit},#{afterlimit}
+</select>
+
+<!-- int howmanywebs(); -->
+ <select id="howmanywebs" resultType="java.lang.Integer">
+  	select count(*) from blogtools
+  </select>
+  
+  <!-- Blogtools memberedit(@Param("nid") Integer nid); -->
+  <select id="memberedit" resultMap="BaseResultMap">
+  	select * from blogtools where nid=#{nid}
+  </select>
+  
+  <!-- int deleteWeb(@Param("nid")  Integer nid); -->
+  <delete id="deleteWeb" parameterType="com.SoftAdmin.bean.Blogtools">
+  	delete  from blogtools where nid=#{nid}
+  </delete>
+  
+  
+  <!-- Blogtools selectWebByName(@Param("webname")  String webname); -->
+  <select id="selectWebByName" resultMap="BaseResultMap">
+  	select * from blogtools where webname like '%${webname}%' or weburl like '%${webname}%' limit 0,1
+  </select>
 </mapper>

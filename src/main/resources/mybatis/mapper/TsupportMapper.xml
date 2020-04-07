@@ -255,4 +255,18 @@
       imgurl = #{imgurl,jdbcType=VARCHAR}
     where tid = #{tid,jdbcType=INTEGER}
   </update>
+  
+  <!-- List<Tsupport> getAllTsupport(); -->
+  <select id="getAllTsupport" resultMap="BaseResultMap" >
+  	select * from tsupport
+  </select>
+  
+  <!-- List<Tsupport> memberedit(@Param("tid") Integer tid); -->
+  <select id="memberedit" resultMap="BaseResultMap" >
+  	select * from tsupport where tid=#{tid}
+  </select>
+  
+ 
+  
+  
 </mapper>

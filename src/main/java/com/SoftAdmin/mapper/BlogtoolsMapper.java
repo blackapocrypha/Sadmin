@@ -27,4 +27,16 @@ public interface BlogtoolsMapper {
     int updateByPrimaryKeySelective(Blogtools record);
 
     int updateByPrimaryKey(Blogtools record);
+
+	List<Blogtools> getAllBlogOnlineTools(@Param("beforelimit") Integer beforelimit,@Param("afterlimit") Integer afterlimit);
+
+	int howmanywebs();
+
+	Blogtools memberedit(@Param("nid") Integer nid);
+
+	int deleteWeb(@Param("nid")  Integer nid);
+
+	Blogtools selectWebByName(@Param("webname")  String webname);
+
+	
 }

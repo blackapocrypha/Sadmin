@@ -27,4 +27,12 @@ public interface BlogaappMapper {
     int updateByPrimaryKeySelective(Blogaapp record);
 
     int updateByPrimaryKey(Blogaapp record);
+
+	List<Blogaapp> getAllApp(@Param("beforelimit") Integer beforelimit,@Param("afterlimit")  Integer afterlimit);
+
+	int howmanyapp();
+
+	Blogaapp selectappByName(@Param("appname") String appname);
+
+	
 }

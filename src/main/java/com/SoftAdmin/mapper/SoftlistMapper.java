@@ -27,4 +27,10 @@ public interface SoftlistMapper {
     int updateByPrimaryKeySelective(Softlist record);
 
     int updateByPrimaryKey(Softlist record);
+
+	List<Softlist> getAllSoft(@Param("beforelimit") Integer beforelimit,@Param("afterlimit") Integer afterlimit);
+
+	Softlist getSoftDis(@Param("sid") String sid);
+
+	int updateSoft(Softlist soft);
 }

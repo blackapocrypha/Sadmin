@@ -27,4 +27,6 @@ public interface SoftpageMapper {
     int updateByPrimaryKeySelective(Softpage record);
 
     int updateByPrimaryKey(Softpage record);
+
+	int updateSoft(Softpage sp);
 }

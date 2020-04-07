@@ -27,4 +27,10 @@ public interface BlogagameMapper {
     int updateByPrimaryKeySelective(Blogagame record);
 
     int updateByPrimaryKey(Blogagame record);
+
+	List<Blogagame> getAllAgames(@Param("beforelimit")  Integer beforelimit,@Param("afterlimit")  Integer afterlimit);
+
+	int howmanyagame();
+
+	Blogagame selectgameByName(@Param("appname") String appname);
 }

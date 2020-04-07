@@ -33,7 +33,7 @@ public class UsersController {
 	public Map<String,Object> getAllUsersList(Integer number){
 		number=page;
 		Integer beforelimit = (number-1)*5;
-		Integer afterlimit = (number)*5;
+		Integer afterlimit = 5;
 		
 		List<Users> users = usersService.getAllUsers(beforelimit,afterlimit);
 		List<Udetils> ud = udetilService.getAllUsers(beforelimit,afterlimit);

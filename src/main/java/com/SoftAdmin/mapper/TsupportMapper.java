@@ -27,4 +27,10 @@ public interface TsupportMapper {
     int updateByPrimaryKeySelective(Tsupport record);
 
     int updateByPrimaryKey(Tsupport record);
+
+	List<Tsupport> getAllTsupport();
+
+	Tsupport memberedit(@Param("tid") Integer tid);
+
+	
 }

@@ -193,4 +193,21 @@
       imgurl = #{imgurl,jdbcType=VARCHAR}
     where sid = #{sid,jdbcType=INTEGER}
   </update>
+  
+  <!-- List<Softlist> getAllSoft(@Param("beforelimit") Integer beforelimit,@Param("afterlimit") Integer afterlimit); -->
+  <select id="getAllSoft" resultMap="BaseResultMap">
+  	select * from softlist limit #{beforelimit},#{afterlimit}
+  </select>
+  
+  <!-- Softlist getSoftDis(@Param("sid") String sid); -->
+  <select id="getSoftDis" resultMap="BaseResultMap">
+  	select * from softlist where sid=#{sid}
+  </select>
+  
+  <!-- int updateSoft(Softlist soft); -->
+  <update id="updateSoft" parameterType="com.SoftAdmin.bean.Softlist" >
+  	update softlist set softname = #{softname}, softtype = #{softtype}, imgurl = #{imgurl} where sid = #{sid}
+  </update>
+  
+  
 </mapper>
