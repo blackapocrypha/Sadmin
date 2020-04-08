@@ -27,4 +27,12 @@ public interface BlogTalkMapper {
     int updateByPrimaryKeySelective(BlogTalk record);
 
     int updateByPrimaryKey(BlogTalk record);
+
+	List<BlogTalk> getAllToolMessage(@Param("beforelimit") Integer beforelimit,@Param("afterlimit")  Integer afterlimit);
+
+	int howmanymessages();
+
+	List<BlogTalk> selectAllIdAndTime();
+
+	List<BlogTalk> selectAllChosenByid(@Param("idlist") List<Integer> idlist);
 }
