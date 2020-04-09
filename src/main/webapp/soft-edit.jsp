@@ -10,6 +10,7 @@
         <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
         <link rel="stylesheet" href="./css/font.css">
         <link rel="stylesheet" href="./css/xadmin.css">
+        <link rel="stylesheet" href="http://47.94.83.36/tools/css/imgupload.css">
         <script type="text/javascript" src="./lib/layui/layui.js" charset="utf-8"></script>
         <script type="text/javascript" src="./js/xadmin.js"></script>
         <script src="http://47.94.83.36/tools/js/jquery-3.4.1.min.js"></script>
@@ -85,6 +86,20 @@
                         <input type="submit" id="editupdate" onclick="fresh()" value="更新" class="layui-btn">
                        </div>
                 </form>
+                
+              <!-- 图片上传 -->
+                <div id="addimg">
+					<form id="fileup" method="post">
+						<div id="divshowimg"><span>添加</span></div>
+					</form>
+					<a href="#">
+						<form enctype="multipart/form-data" id="uploadform1" action="http://www.pslywebsite.top/imgfactory/upload_server.php"
+						 method="post">
+							<input type="file" name="file" multiple="multiple" class="inputlabelBox" id="upfile" value="上传" />
+						</form>
+						添加图片
+					</a>
+				</div><!-- 图片上传 -->
             </div>
         </div>
    <script>
@@ -101,6 +116,32 @@
    });
    
    
+   $("#upfile").change(function(){
+	    showthis();
+	});
+	function showthis(){
+		var fileList = document.getElementById('upfile').files; 
+    var filename ="http://www.pslywebsite.top/imgfactory/uploads/"+fileList[0].name;   
+ 	 $("#S_img").val(filename);
+		 var img = window.webkitURL.createObjectURL(fileList[0]);
+		 var formData = new FormData();
+		 formData.append('file', fileList[0]);
+		 $.ajax({
+				url: 'http://www.pslywebsite.top/imgfactory/upload_server.php',
+				type: 'POST',
+				data: formData,
+				//这两个设置项必填
+				contentType: false,
+				processData: false,
+				async:true,
+				success: function(data) {	
+					console.log("success");						
+				}
+			})	 
+		 $("#divshowimg").css("display","none");
+		 $("#upfile").css("display","none");
+		 $("#fileup").append("<img id='preimg' src='"+img+"'>"); 
+	} 
    </script>
     </body>
 
