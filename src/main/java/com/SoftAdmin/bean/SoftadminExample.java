@@ -373,6 +373,126 @@ public class SoftadminExample {
             addCriterion("urlimg not between", value1, value2, "urlimg");
             return (Criteria) this;
         }
+
+        public Criteria andStatusIsNull() {
+            addCriterion("status is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusIsNotNull() {
+            addCriterion("status is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusEqualTo(Integer value) {
+            addCriterion("status =", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusNotEqualTo(Integer value) {
+            addCriterion("status <>", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusGreaterThan(Integer value) {
+            addCriterion("status >", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusGreaterThanOrEqualTo(Integer value) {
+            addCriterion("status >=", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusLessThan(Integer value) {
+            addCriterion("status <", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusLessThanOrEqualTo(Integer value) {
+            addCriterion("status <=", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusIn(List<Integer> values) {
+            addCriterion("status in", values, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusNotIn(List<Integer> values) {
+            addCriterion("status not in", values, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusBetween(Integer value1, Integer value2) {
+            addCriterion("status between", value1, value2, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusNotBetween(Integer value1, Integer value2) {
+            addCriterion("status not between", value1, value2, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andPowerIsNull() {
+            addCriterion("power is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPowerIsNotNull() {
+            addCriterion("power is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPowerEqualTo(Integer value) {
+            addCriterion("power =", value, "power");
+            return (Criteria) this;
+        }
+
+        public Criteria andPowerNotEqualTo(Integer value) {
+            addCriterion("power <>", value, "power");
+            return (Criteria) this;
+        }
+
+        public Criteria andPowerGreaterThan(Integer value) {
+            addCriterion("power >", value, "power");
+            return (Criteria) this;
+        }
+
+        public Criteria andPowerGreaterThanOrEqualTo(Integer value) {
+            addCriterion("power >=", value, "power");
+            return (Criteria) this;
+        }
+
+        public Criteria andPowerLessThan(Integer value) {
+            addCriterion("power <", value, "power");
+            return (Criteria) this;
+        }
+
+        public Criteria andPowerLessThanOrEqualTo(Integer value) {
+            addCriterion("power <=", value, "power");
+            return (Criteria) this;
+        }
+
+        public Criteria andPowerIn(List<Integer> values) {
+            addCriterion("power in", values, "power");
+            return (Criteria) this;
+        }
+
+        public Criteria andPowerNotIn(List<Integer> values) {
+            addCriterion("power not in", values, "power");
+            return (Criteria) this;
+        }
+
+        public Criteria andPowerBetween(Integer value1, Integer value2) {
+            addCriterion("power between", value1, value2, "power");
+            return (Criteria) this;
+        }
+
+        public Criteria andPowerNotBetween(Integer value1, Integer value2) {
+            addCriterion("power not between", value1, value2, "power");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

@@ -225,4 +225,32 @@
       imgurl = #{imgurl,jdbcType=VARCHAR}
     where btid = #{btid,jdbcType=INTEGER}
   </update>
+  
+  
+    
+    <!-- List<BlogTalk> getAllToolMessage(@Param("beforelimit") Integer beforelimit,@Param("afterlimit")  Integer afterlimit); -->
+  <select id="getAllToolMessage" resultMap="BaseResultMap">
+  	select * from blog_agametalk  limit #{beforelimit},#{afterlimit}
+  </select>
+  
+  <!-- int howmanymessages -->
+  <select id="howmanymessages" resultType="java.lang.Integer">
+  	select count(*) from blog_agametalk 
+  </select>
+  
+  <!-- selectAllIdAndTime -->
+  <select id="selectAllIdAndTime"  resultMap="BaseResultMap">
+  	select btid,talktime from blog_agametalk 
+  </select>
+  
+  
+  <!-- List<BlogTalk> selectAllChosenByid(List<BlogTalk> idlist); -->
+  <select id="selectAllChosenByid" resultMap="BaseResultMap">
+	  select * from blog_agametalk 
+	  where btid in
+	   	 <foreach collection="idlist" open="(" separator="," close=")" index="index" item="item">
+			 #{item} 
+	     </foreach>     
+  
+  </select>
 </mapper>

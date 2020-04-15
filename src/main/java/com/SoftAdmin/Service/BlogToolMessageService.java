@@ -18,4 +18,6 @@ public interface BlogToolMessageService {
 
 	List<BlogTalk> selectAllChosenByid(List<Integer> idlist);
 
+	Boolean deleteMessage(Integer nid);
+
 }

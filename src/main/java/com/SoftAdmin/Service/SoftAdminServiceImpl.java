@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.SoftAdmin.bean.Softadmin;
 import com.SoftAdmin.mapper.SoftadminMapper;
 
+
 @Service
 public class SoftAdminServiceImpl implements SoftAdminService {
 

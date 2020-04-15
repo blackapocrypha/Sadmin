@@ -102,4 +102,11 @@ public class BlogMusicController {
 			Blogmusic blogmusic = blogMusicService.selectmusicByName(appname);
 			return blogmusic;
 		}
+		
+		/*音乐总数*/
+		@RequestMapping(value = "musicnumber")
+		@ResponseBody
+		public Integer musicnumber() {
+			return blogMusicService.howmanymusic();
+		}
 }

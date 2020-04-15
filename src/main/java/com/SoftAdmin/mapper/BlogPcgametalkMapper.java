@@ -2,6 +2,8 @@ package com.SoftAdmin.mapper;
 
 import com.SoftAdmin.bean.BlogPcgametalk;
 import com.SoftAdmin.bean.BlogPcgametalkExample;
+import com.SoftAdmin.bean.BlogTxttalk;
+
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
@@ -27,4 +29,14 @@ public interface BlogPcgametalkMapper {
     int updateByPrimaryKeySelective(BlogPcgametalk record);
 
     int updateByPrimaryKey(BlogPcgametalk record);
+
+	List<BlogPcgametalk> getAllToolMessage(@Param("beforelimit") Integer beforelimit,@Param("afterlimit") Integer afterlimit);
+
+	int howmanymessages();
+
+	List<BlogPcgametalk> selectAllIdAndTime();
+
+	List<BlogPcgametalk> selectAllChosenByid(@Param("idlist") List<Integer> idlist);
+
+	
 }

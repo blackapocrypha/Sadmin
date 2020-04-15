@@ -1,5 +1,6 @@
 package com.SoftAdmin.mapper;
 
+import com.SoftAdmin.bean.BlogAgametalk;
 import com.SoftAdmin.bean.BlogTxttalk;
 import com.SoftAdmin.bean.BlogTxttalkExample;
 import java.util.List;
@@ -27,4 +28,16 @@ public interface BlogTxttalkMapper {
     int updateByPrimaryKeySelective(BlogTxttalk record);
 
     int updateByPrimaryKey(BlogTxttalk record);
+
+	List<BlogTxttalk> getAllToolMessage(@Param("beforelimit") Integer beforelimit,@Param("afterlimit")  Integer afterlimit);
+
+	int howmanymessages();
+
+	List<BlogTxttalk> selectAllIdAndTime();
+
+	List<BlogTxttalk> selectAllChosenByid(@Param("idlist") List<Integer> idlist);
+
+
+
+	
 }

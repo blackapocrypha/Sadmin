@@ -16,7 +16,29 @@
         <style>
         .L_uphone{
         	display:none;
-        }</style>
+        }
+        #kissid{
+        	border:0px;
+        	border-color:white;
+        	height: 30px;
+        	display: block;
+			width: 100%;
+			padding-left: 10px;
+			line-height: 1.3;
+			border-width: 1px;
+			border-style: solid;
+			background-color: #fff;
+			border-radius: 2px;
+			outline: 0;
+			-webkit-appearance: none;
+			transition: all .3s;
+			-webkit-transition: all .3s;
+			box-sizing: border-box;}
+        
+        #kissid:hover{
+        border-color: #D2D2D2 ;
+        }
+        </style>
         <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
         <!--[if lt IE 9]>
             <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
@@ -70,14 +92,16 @@
                         <label for="L_username" class="layui-form-label">
                             <span class="x-red"></span>留言时间</label>
                         <div class="layui-input-inline">
+                        
                             <input type="text"  id="talktime" name="talktime" required="" lay-verify="nikename" autocomplete="off" class="layui-input"></div>
                     </div>
                     <div class="layui-form-item">
                         <label for="L_pass" class="layui-form-label">
                             <span class="x-red">*</span>留言对象</label>
                         <div class="layui-input-inline">
-                           <input type="text"  id="kissid" name="kissid" required=""  class="layui-input"></div>
-								
+                           <input type="text"  id="kissid" name="kissid">
+                            <!-- <input type="text"  id="kissid" name="kissid" required=""  class="layui-input"></div> -->
+							
                         <div class="layui-form-mid layui-word-aux" id="sexdis"></div></div>
                     <div class="layui-form-item">
                         <label for="L_repass" class="layui-form-label">

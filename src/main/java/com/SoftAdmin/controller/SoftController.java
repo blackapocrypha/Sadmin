@@ -63,7 +63,6 @@ public class SoftController {
 		
 		@RequestMapping(path = "updateSoft")
 		public String updateSoft(Softlist soft) {
-
 			boolean flag = softListService.updateSoft(soft);
 			Softpage sp = new Softpage();
 			sp.setSoftid(soft.getSid());

@@ -103,4 +103,13 @@ public class BlogToolController {
 			return blog;
 		}
 		
+		//网站数	
+		@RequestMapping(value = "getAlltoolsNumber")
+		@ResponseBody
+		public Integer getAlltoolsNumber() {
+
+				return blogToolsService.howmanywebs();
+		}
+		
+		
 }

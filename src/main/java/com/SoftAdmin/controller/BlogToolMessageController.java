@@ -116,12 +116,27 @@ public class BlogToolMessageController {
 				}
 			}
 		}
-		//查询指定id的留言
-		List<BlogTalk> selectmessage =  blogToolMessageService.selectAllChosenByid(idlist);
-		return selectmessage;
+		//如果没有元素符合，那直接结束
+		if(idlist.isEmpty()) {
+			return null;
+		}else {
+			//查询指定id的留言
+			List<BlogTalk> selectmessage =  blogToolMessageService.selectAllChosenByid(idlist);
+			
+			return selectmessage;	
+		}
+		
 	}
 	
-	
-	
+	@RequestMapping(path = "deleteMessage")
+	@ResponseBody
+	public String deleteMessage(Integer nid) {
+		Boolean flag = blogToolMessageService.deleteMessage(nid);
+		if(flag) {
+			return "yes";
+		}else {
+			return "no";
+		}
+	}
 	
 }

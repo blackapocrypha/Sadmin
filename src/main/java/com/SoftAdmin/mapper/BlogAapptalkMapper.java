@@ -27,4 +27,16 @@ public interface BlogAapptalkMapper {
     int updateByPrimaryKeySelective(BlogAapptalk record);
 
     int updateByPrimaryKey(BlogAapptalk record);
+
+	List<BlogAapptalk> getAllToolMessage(@Param("beforelimit") Integer beforelimit,@Param("afterlimit") Integer afterlimit);
+
+	int howmanymessages();
+
+	Boolean updatemessageByid(BlogAapptalk bt);
+
+	List<BlogAapptalk> selectAllIdAndTime();
+
+	List<BlogAapptalk> selectAllChosenByid(@Param("idlist") List<Integer> idlist);
+
+	BlogAapptalk memberedit(@Param("nid") Integer nid);
 }

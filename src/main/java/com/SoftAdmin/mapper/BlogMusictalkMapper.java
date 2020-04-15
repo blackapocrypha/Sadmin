@@ -27,4 +27,14 @@ public interface BlogMusictalkMapper {
     int updateByPrimaryKeySelective(BlogMusictalk record);
 
     int updateByPrimaryKey(BlogMusictalk record);
+
+	List<BlogMusictalk> getAllToolMessage(@Param("beforelimit") Integer beforelimit,@Param("afterlimit") Integer afterlimit);
+
+	int howmanymessages();
+
+	List<BlogMusictalk> selectAllIdAndTime();
+
+	List<BlogMusictalk> selectAllChosenByid(@Param("idlist") List<Integer> idlist);
+
+	
 }

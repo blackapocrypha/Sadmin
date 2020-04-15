@@ -9,6 +9,10 @@ public class Softadmin {
 
     private String urlimg;
 
+    private Integer status;
+
+    private Integer power;
+
     public Integer getId() {
         return id;
     }
@@ -39,5 +43,21 @@ public class Softadmin {
 
     public void setUrlimg(String urlimg) {
         this.urlimg = urlimg == null ? null : urlimg.trim();
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public Integer getPower() {
+        return power;
+    }
+
+    public void setPower(Integer power) {
+        this.power = power;
     }
 }

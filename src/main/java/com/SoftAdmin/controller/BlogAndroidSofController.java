@@ -102,4 +102,12 @@ public class BlogAndroidSofController {
 		Blogaapp blogaapp = blogAndroidSofService.selectappByName(appname);
 		return blogaapp;
 	}
+	
+	/*软件总数*/
+	@RequestMapping(value = "appnum")
+	@ResponseBody
+	public Integer appnum() {
+		return blogAndroidSofService.howmanyapp();
+	}
+	
 }

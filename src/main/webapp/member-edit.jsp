@@ -10,6 +10,7 @@
         <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
         <link rel="stylesheet" href="./css/font.css">
         <link rel="stylesheet" href="./css/xadmin.css">
+        
         <script type="text/javascript" src="./lib/layui/layui.js" charset="utf-8"></script>
         <script type="text/javascript" src="./js/xadmin.js"></script>
         <script src="http://47.94.83.36/tools/js/jquery-3.4.1.min.js"></script>
@@ -85,6 +86,8 @@
                         <input type="button" id="editupdate" value="更新" class="layui-btn">
                        </div>
                 </form>
+                
+              
             </div>
         </div>
    <script>
@@ -110,6 +113,8 @@
    });
    
    
+   
+
    </script>
     </body>
 

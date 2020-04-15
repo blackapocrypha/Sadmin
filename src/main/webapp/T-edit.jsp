@@ -119,7 +119,7 @@
                        </div>
                 </form>
                 
-                   <!-- 图片上传 -->
+                <!-- 图片上传 -->
                 <div id="addimg">
 					<form id="fileup" method="post">
 						<div id="divshowimg"><span>添加</span></div>

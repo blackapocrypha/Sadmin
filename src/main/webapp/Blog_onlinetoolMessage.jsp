@@ -260,7 +260,7 @@ for(var i=1;i<=4;i++){
 	if(obj==i){
 		$("#countpage").append("<span class='current' id='currentthis'>"+i+"</span>");
 	}else{
-		$("#countpage").append("<a class='num' onclick='chosenthis("+i+")' href='BAgame/changePage?num="+i+"'>"+i+"</a>");
+		$("#countpage").append("<a class='num' onclick='chosenthis("+i+")' href='BToolMessage/changePage?num="+i+"'>"+i+"</a>");
 	}
 }
 }
@@ -311,7 +311,7 @@ for(var i=1;i<=4;i++){
     	  if(confirm("确定要删除？")){
     		  $.ajax({
     			  type:"POST",
-    			  url:"BBook/deletebooks",
+    			  url:"BToolMessage/deleteMessage",
     			  data:{"nid":obj},
     			  async:true,
     			  success:function(rs){

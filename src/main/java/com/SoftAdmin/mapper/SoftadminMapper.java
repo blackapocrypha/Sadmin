@@ -27,6 +27,6 @@ public interface SoftadminMapper {
     int updateByPrimaryKeySelective(Softadmin record);
 
     int updateByPrimaryKey(Softadmin record);
-
-	Softadmin login(Softadmin softadmin);
+    
+    Softadmin login(Softadmin softadmin);
 }

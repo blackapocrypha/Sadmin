@@ -50,4 +50,10 @@ public class BlogToolMessageServiceImpl implements BlogToolMessageService {
 		// TODO Auto-generated method stub
 		return blogTalkMapper.selectAllChosenByid(idlist);
 	}
+
+	@Override
+	public Boolean deleteMessage(Integer nid) {
+		// TODO Auto-generated method stub
+		return blogTalkMapper.deleteByPrimaryKey(nid)>0;
+	}
 }
