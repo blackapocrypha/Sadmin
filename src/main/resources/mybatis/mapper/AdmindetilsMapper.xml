@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.SoftAdmin.mapper.AdmindetilsMapper" >
+  <resultMap id="BaseResultMap" type="com.SoftAdmin.bean.Admindetils" >
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="urlimg" property="urlimg" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    username, phone, email, urlimg
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.SoftAdmin.bean.AdmindetilsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from admindetils
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.SoftAdmin.bean.AdmindetilsExample" >
+    delete from admindetils
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.SoftAdmin.bean.Admindetils" >
+    insert into admindetils (username, phone, email, 
+      urlimg)
+    values (#{username,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{urlimg,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.SoftAdmin.bean.Admindetils" >
+    insert into admindetils
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="urlimg != null" >
+        urlimg,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="urlimg != null" >
+        #{urlimg,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.SoftAdmin.bean.AdmindetilsExample" resultType="java.lang.Integer" >
+    select count(*) from admindetils
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update admindetils
+    <set >
+      <if test="record.username != null" >
+        username = #{record.username,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null" >
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null" >
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.urlimg != null" >
+        urlimg = #{record.urlimg,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update admindetils
+    set username = #{record.username,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
+      urlimg = #{record.urlimg,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  
+  <!-- Admindetils getAllAdminDetils(@Param("username") String username); -->
+  <select id="getAllAdminDetils" resultMap="BaseResultMap">
+  	select * from admindetils where username=#{username}
+  </select>
+  
+  
+  <!-- void updateAdmin(@Param("username") String username,@Param("phone") String phone,@Param("email") String email,@Param("urlimg")  String urlimg);
+   -->
+    <update id="updateAdmin" parameterType="com.SoftAdmin.bean.Admindetils" >
+    update admindetils
+    set phone = #{phone},
+      email = #{email},
+      urlimg = #{urlimg} where username = #{username}
+    
+  </update>
+  
+  <!-- Udetils getAllUsers(); -->
+  <select id="getAllAdmin" resultMap="BaseResultMap">
+  	select * from admindetils limit ${beforelimit},${afterlimit}
+  </select>
+  
+  
+  <!-- List<Udetils> getUdetilsWhichUseToEdit(@Param("username") String username); -->
+   <select id="getAdmindetilsWhichUseToEdit" resultMap="BaseResultMap">
+   	select * from admindetils where username=#{username}
+   </select>
+   
+   <!-- int updateUdetilsByUphone(Udetils udetils); -->
+   <update id="updateAdmindetilsByphone" parameterType="com.SoftAdmin.bean.Admindetils" >
+    update admindetils set phone = #{phone}, email = #{email},urlimg = #{urlimg} where username = #{username}
+  </update>
+  
+   <!-- 
+  <insert id="addNewUser" parameterType="com.SoftAdmin.bean.Admindetils" >
+    insert into admindetils (username,uphone,urlimg) values (#{username},#{username},#{urlimg})
+  </insert>-->
+  
+  <!--int deleteUser(String username); -->
+  <delete id="deleteUser" parameterType="com.SoftAdmin.bean.Admindetils">
+  	delete from admindetils where username=#{username}
+  </delete>
+  
+  <!-- List<Udetils> selectUsersByName(@Param("username") String username);
+   <select id="selectUsersByName" resultMap="BaseResultMap">
+  	select * from admindetils where username like '%${username}%' limit 0,1
+  </select> -->
+</mapper>

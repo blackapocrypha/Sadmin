@@ -228,6 +228,73 @@
   
    <!-- Softadmin login(@Param("softadmin") Softadmin softadmin); -->
   <select id="login" resultMap="BaseResultMap">
-  	select username from softadmin where username=#{username} and password=#{password}
+  	select username,status from softadmin where username=#{username} and password=#{password}
+  </select>
+  
+  <!-- List<Softadmin> getAllOnlineAdmin(); -->
+  <select id="getAllOnlineAdmin" resultMap="BaseResultMap">
+  	select username,urlimg from softadmin where status=1
+  </select>
+  
+   <!-- int checkAdminIsExit(String username); -->
+  <select id="checkAdminIsExit"  resultType="java.lang.Integer">
+  	select * from softadmin where username=#{username} limit 0,1
+  </select>
+ 
+ <!-- void adminOnLine(String username); -->
+ <update id="adminOnLine" parameterType="com.SoftAdmin.bean.Softadmin">
+ 	update softadmin set status=1 where username=#{username}
+ </update>
+ 
+  <!-- void adminOnLine(String username); -->
+ <update id="adminOutLine" parameterType="com.SoftAdmin.bean.Softadmin">
+ 	update softadmin set status=0 where username=#{username}
+ </update>
+ 
+ <!-- Integer getPowerOfUser(String username); -->
+ <select id="getPowerOfUser" resultMap="BaseResultMap">
+ 	select power from softadmin where username=#{username}
+ </select>
+ 
+ <!-- void updatePass(@Param("username") String username,@Param("password")  String password);
+ -->
+ <update id="updatePass" parameterType="com.SoftAdmin.bean.Softadmin">
+ 	update softadmin set password=#{password},urlimg=#{urlimg} where username=#{username}
+ </update>
+ 
+ <!-- List<Softadmin> getAllAdmin(@Param("beforelimit") Integer beforelimit,@Param("afterlimit")  Integer afterlimit);
+  -->
+  <select id="getAllAdmin" resultMap="BaseResultMap">
+  	select id,username,urlimg,power from softadmin limit #{beforelimit},#{afterlimit}
+  </select>
+  
+  <!-- int howmanyadmin(); -->
+  <select id="howmanyadmin" resultType="java.lang.Integer">
+  	select count(*) from softadmin
+  </select>
+  
+  <!-- int updateAdmindetilsByphone(@Param("username") String username,@Param("urlimg") String urlimg);
+   -->
+  <update id="updateAdmindetilsByphone" parameterType="com.SoftAdmin.bean.Softadmin" >
+    update softadmin set urlimg = #{urlimg} where username = #{username}
+  </update>
+
+  <select id="getAdminByUsername" resultMap="BaseResultMap">
+  		select password from softadmin where username=#{username}
+  </select>
+  
+ <!-- int updateSoftAdminPass(Softadmin soft); -->
+  <update id="updateSoftAdminPass" parameterType="com.SoftAdmin.bean.Softadmin" >
+    update softadmin set password = #{password} where username = #{username}
+  </update>
+  
+ <!-- int deleteUser(String username); -->
+  <delete id="deleteUser" parameterType="com.SoftAdmin.bean.Softadmin">
+  	delete  from softadmin where username=#{username}
+  </delete>
+  
+  
+  <select id="selectUsersByName" resultMap="BaseResultMap">
+  	select id,username,urlimg from softadmin where username like '%${username}%' limit 0,1
   </select>
 </mapper>

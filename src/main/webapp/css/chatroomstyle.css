@@ -209,3 +209,13 @@ body {
     border-radius: 52px; 
 	overflow: hidden;
 }
+#hidenusername,#hidenusername1{
+	display:none;
+}
+
+.message-data-time{
+	display:inline-block;
+}
+
+
+

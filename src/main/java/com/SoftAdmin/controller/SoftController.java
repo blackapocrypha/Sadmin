@@ -26,7 +26,7 @@ public class SoftController {
 	@Resource
 	private SoftPageService softPageService;
 	
-	
+	//获取所有软件
 	@RequestMapping(path = "getAllSoft")
 	@ResponseBody
 	public List<Softlist> getAllSoft(Integer number) {
@@ -61,6 +61,7 @@ public class SoftController {
 			return soft;
 		}
 		
+		//更新软件
 		@RequestMapping(path = "updateSoft")
 		public String updateSoft(Softlist soft) {
 			boolean flag = softListService.updateSoft(soft);

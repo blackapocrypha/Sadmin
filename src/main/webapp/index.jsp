@@ -15,13 +15,27 @@
         <link rel="shortcut icon" href="http://47.94.83.36/tools/img/soft.ico" /> 
         <!-- <link rel="stylesheet" href="./css/theme5.css"> -->
         <script src="./lib/layui/layui.js" charset="utf-8"></script>
+         <script src="http://47.94.83.36/tools/js/jquery-3.4.1.min.js"></script>
         <script type="text/javascript" src="./js/xadmin.js"></script>
         <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
         <!--[if lt IE 9]>
           <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
           <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
-        
+        <script>
+        $(function(){
+        	
+        	var status = $("#statusAdmin").val();
+        	if(status=="1"){
+        		$("#userimportent").append("<li>"
+                        +"<a onclick=\"xadmin.add_tab('管理员管理','admin-list.jsp')\">"
+                        +"<i class='iconfont'>&#xe6a7;</i>"
+                        +"<cite>管理员管理</cite></a>"
+               	     	+" </li>");
+        	}
+        	
+        });
+        </script>
     </head>
     <body class="index">
     
@@ -41,15 +55,18 @@
 					<a href="javascript:;">
 						${p.username}
 					</a>
+					<input id="statusAdmin" value="${p.status}" type="hidden">
 				</c:forEach>     
 		
 					
                     <dl class="layui-nav-child">
                         <!-- 二级菜单 -->
                         <dd>
-                            <a onclick="xadmin.open('个人信息','http://www.baidu.com')">个人信息</a></dd>
-                        <dd>
-                            <a onclick="xadmin.open('切换帐号','http://www.baidu.com')">切换帐号</a></dd>
+	                        <c:forEach items="${sessionScope.admin}" var="p" >
+									 <a onclick="xadmin.open('个人信息','AdminSelf.jsp?username=${p.username}')">个人信息</a>
+					 	
+							</c:forEach>  
+                        </dd>                    
                         <dd>
                             <a href="SAC/logout">退出</a></dd>
                     </dl>
