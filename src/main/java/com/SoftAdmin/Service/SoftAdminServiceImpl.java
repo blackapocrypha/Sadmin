@@ -95,6 +95,12 @@ public class SoftAdminServiceImpl implements SoftAdminService {
 		return softadminMapper.insert(soft)>0;
 	}
 
+	@Override
+	public Softadmin selectAdminByName(String username) {
+		// TODO Auto-generated method stub
+		return softadminMapper.selectAdminByName(username);
+	}
+
 
 
 	

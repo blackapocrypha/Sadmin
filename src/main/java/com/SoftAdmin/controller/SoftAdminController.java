@@ -233,4 +233,22 @@ public class SoftAdminController {
 		}	
 	}
 	
+	
+	//搜索用户
+	@RequestMapping(value = "selectAdminByName")
+	@ResponseBody
+	public Map<String,Object> selectAdminByName(String username){
+		Map<String,Object> map = new HashMap<>();
+		Softadmin soft = softAdminService.selectAdminByName(username);
+		Admindetils ad = adminDetilsService.selectAdminByName(username);
+		map.put("soft", soft);
+		map.put("ad", ad);
+		
+		if(soft.getUsername() == null && ad.getUsername() == null) {
+			return null;	
+		}
+		return map;
+	}
+	
+	
 }

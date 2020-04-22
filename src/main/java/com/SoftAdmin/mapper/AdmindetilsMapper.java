@@ -66,6 +66,13 @@ public interface AdmindetilsMapper {
 	 */
 	int deleteUser(String username);
 
+	/**
+	 * 
+	 * @param username 用户名
+	 * @return 
+	 */
+	Admindetils selectAdminByName(@Param("username") String username);
+
 
 
 }

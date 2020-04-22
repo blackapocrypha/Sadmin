@@ -21,4 +21,6 @@ public interface AdminDetilsService {
 
 	boolean deleteUser(String username);
 
+	Admindetils selectAdminByName(String username);
+
 }

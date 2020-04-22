@@ -56,4 +56,10 @@ public class AdminDetilsServiceImpl implements AdminDetilsService {
 		// TODO Auto-generated method stub
 		return admindetilsMapper.deleteUser(username)>0;
 	}
+
+	@Override
+	public Admindetils selectAdminByName(String username) {
+		// TODO Auto-generated method stub
+		return admindetilsMapper.selectAdminByName(username);
+	}
 }

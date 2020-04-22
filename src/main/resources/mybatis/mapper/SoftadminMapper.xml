@@ -294,7 +294,7 @@
   </delete>
   
   
-  <select id="selectUsersByName" resultMap="BaseResultMap">
-  	select id,username,urlimg from softadmin where username like '%${username}%' limit 0,1
+  <select id="selectAdminByName" resultMap="BaseResultMap">
+  	select id,username,urlimg,power from softadmin where username like '%${username}%' limit 0,1
   </select>
 </mapper>

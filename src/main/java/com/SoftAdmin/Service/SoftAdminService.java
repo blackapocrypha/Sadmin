@@ -33,6 +33,8 @@ public interface SoftAdminService {
 
 	boolean addNewAdmin(Softadmin soft);
 
+	Softadmin selectAdminByName(String username);
+
 	
 
 }

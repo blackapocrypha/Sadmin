@@ -112,7 +112,14 @@ public interface SoftadminMapper {
 	 * @param username 用户名
 	 * @return
 	 */
-	int deleteUser(String username);
+	int deleteUser(@Param("username") String username);
+
+	/**
+	 * 
+	 * @param username 用户名
+	 * @return
+	 */
+	Softadmin selectAdminByName(@Param("username") String username);
 
 
 

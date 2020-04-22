@@ -204,8 +204,8 @@
   	delete from admindetils where username=#{username}
   </delete>
   
-  <!-- List<Udetils> selectUsersByName(@Param("username") String username);
-   <select id="selectUsersByName" resultMap="BaseResultMap">
+  <!-- List<Udetils> selectAdminByName(@Param("username") String username); -->
+   <select id="selectAdminByName" resultMap="BaseResultMap">
   	select * from admindetils where username like '%${username}%' limit 0,1
-  </select> -->
+  </select>
 </mapper>

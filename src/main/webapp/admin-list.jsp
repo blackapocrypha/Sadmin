@@ -230,32 +230,34 @@
 	 var mohusearch = $("#mohusearch").val();	
 	 $.ajax({		 
 		 type:"POST",
-		 url:"${pageContext.request.contextPath}/users/selectUsersByName",
+		 url:"${pageContext.request.contextPath}/SAC/selectAdminByName",
 		 data:{"username":mohusearch},
 		 async:false,
 		 dataType:"json",
 		 success:function(rs){
 			 $('#tbmessage').html("");
-				
-				 	$('#tbmessage').append("<tr>"
-		                     +"<td>"
-		                     +"<input type='checkbox' name='id' value='1' lay-skin='primary'>" 
-		                     +"</td>"
-		                     +"<td>"+rs.user.uid+"</td>"
-		                     +"<td>"+rs.user.username+"</td>"
-		                     +"<td>"+rs.udetils.usex+"</td>"
-		                     +"<td><img src='"+rs.user.userimg+"'></td>"
-		                     +"<td>"+rs.udetils.ufname+"</td>"
-		                     +"<td class='td-status'>"+rs.udetils.umail+"</td>"
-		                     +"<td class='td-manage'>"
-		                     
-		                     +"<a title='编辑'  onclick=\"xadmin.open('编辑','member-edit.jsp?username="+rs.user.username+"',600,400)\" href='javascript:;'>"
-		                     +" <i class='layui-icon'>&#xe642;</i> </a>"
-		                     +"<a onclick=\"xadmin.open('修改密码','member-password.jsp?username="+rs.user.username+"',600,400)\" title='修改密码' href='javascript:;'>"
-		                     +" <i class='layui-icon'>&#xe631;</i> </a>"
-		                     +"<a title='删除' onclick=\"checkdelete("+rs.user.username+")\" href='javascript:;' >"
-		                     +" <i class='layui-icon'>&#xe640;</i>  </a></td>"    
-		                  	 +"</tr>");	
+			 var power1;
+				if(rs.ad.power=="1"){power1="超级管理员";}else{power1="管理员";}
+				$('#tbmessage').append("<tr>"
+	                     +"<td>"
+	                     +"<input type='checkbox' name='id' value='1' lay-skin='primary'>" 
+	                     +"</td>"
+	                     +"<td>"+rs.soft.id+"</td>"
+	                     +"<td>"+rs.soft.username+"</td>"
+	                     
+	                     +"<td><img src='"+rs.ad.urlimg+"'></td>"
+	                     +"<td>"+rs.ad.phone+"</td>"
+	                     +"<td class='td-status'>"+rs.ad.email+"</td>"
+	                     +"<td>"+power1+"</td>"
+	                     +"<td class='td-manage'>"
+	                     
+	                     +"<a title='编辑'  onclick=\"xadmin.open('编辑','admin-edit.jsp?username="+rs.ad.username+"',600,400)\" href='javascript:;'>"
+	                     +" <i class='layui-icon'>&#xe642;</i> </a>"
+	                     +"<a onclick=\"xadmin.open('修改密码','admin-password.jsp?username="+rs.ad.username+"',600,400)\" title='修改密码' href='javascript:;'>"
+	                     +" <i class='layui-icon'>&#xe631;</i> </a>"
+	                     +"<a title='删除' onclick=\"checkdelete("+rs.ad.username+")\" href='javascript:;' >"
+	                     +" <i class='layui-icon'>&#xe640;</i>  </a></td>"    
+	                  	 +"</tr>");		
 		 }
 	 })//ajax结束
  });
