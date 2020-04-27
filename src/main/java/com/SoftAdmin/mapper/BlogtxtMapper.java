@@ -27,10 +27,25 @@ public interface BlogtxtMapper {
     int updateByPrimaryKeySelective(Blogtxt record);
 
     int updateByPrimaryKey(Blogtxt record);
-
+    
+    /**
+     * 分页查询电子书
+     * @param beforelimit 前抑制点
+     * @param afterlimit  后抑制点
+     * @return
+     */
 	List<Blogtxt> getAllBooks(@Param("beforelimit") Integer beforelimit, @Param("afterlimit") Integer afterlimit);
 
+	/**
+	 * 总共多少书籍
+	 * @return
+	 */
 	int howmanybooks();
 
+	/**
+	 * 根据书名找书籍
+	 * @param bookname 书名
+	 * @return
+	 */
 	Blogtxt selectbookByName(@Param("bookname") String bookname);
 }

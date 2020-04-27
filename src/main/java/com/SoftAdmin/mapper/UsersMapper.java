@@ -28,15 +28,45 @@ public interface UsersMapper {
 
     int updateByPrimaryKey(Users record);
 
+    /**
+     * 分页查询用户
+     * @param beforelimit 前抑制点
+     * @param afterlimit  后抑制点
+     * @return
+     */
     List<Users> getAllUsers(@Param("beforelimit") Integer beforelimit,@Param("afterlimit") Integer afterlimit);
 
+    /**
+     * 总共多少数据
+     * @return
+     */
 	Integer howmanyusers();
 
+	/**
+	 * 根据用户名找用户
+	 * @param username 账户
+	 * @return
+	 */
 	Users getUsersByUsername(@Param("username") String username);
 
+	/**
+	 * 更新用户
+	 * @param user 账户
+	 * @return
+	 */
 	int updatePasswordByUsername(Users user);
 
+	/**
+	 * 删除用户
+	 * @param username 账号
+	 * @return
+	 */
 	int deleteUser(@Param("username") String username);
 
+	/**
+	 * 根据名称查找用户
+	 * @param username 名称
+	 * @return
+	 */
 	Users selectUsersByName(@Param("username") String username);
 }

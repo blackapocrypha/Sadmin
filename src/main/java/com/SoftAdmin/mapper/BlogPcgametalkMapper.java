@@ -30,12 +30,31 @@ public interface BlogPcgametalkMapper {
 
     int updateByPrimaryKey(BlogPcgametalk record);
 
+    /**
+     * 分页查询pc游戏界面留言
+     * @param beforelimit 前抑制点
+     * @param afterlimit  后抑制点
+     * @return
+     */
 	List<BlogPcgametalk> getAllToolMessage(@Param("beforelimit") Integer beforelimit,@Param("afterlimit") Integer afterlimit);
 
+	/**
+	 * 总共多少数据
+	 * @return
+	 */
 	int howmanymessages();
 
+	/**
+	 * 获取所有id
+	 * @return
+	 */
 	List<BlogPcgametalk> selectAllIdAndTime();
 
+	/**
+	 * 根据id数组获取对应信息
+	 * @param idlist id列表
+	 * @return
+	 */
 	List<BlogPcgametalk> selectAllChosenByid(@Param("idlist") List<Integer> idlist);
 
 	

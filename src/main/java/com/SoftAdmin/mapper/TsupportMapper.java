@@ -28,8 +28,20 @@ public interface TsupportMapper {
 
     int updateByPrimaryKey(Tsupport record);
 
+
+    /**
+     * 分页查询技术支持信息
+     * @param beforelimit 前抑制点
+     * @param afterlimit  后抑制点
+     * @return
+     */
 	List<Tsupport> getAllTsupport();
 
+	/**
+	 * 根据id获取技术支持信息
+	 * @param tid id
+	 * @return
+	 */
 	Tsupport memberedit(@Param("tid") Integer tid);
 
 	

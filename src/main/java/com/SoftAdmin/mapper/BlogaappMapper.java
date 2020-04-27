@@ -27,11 +27,26 @@ public interface BlogaappMapper {
     int updateByPrimaryKeySelective(Blogaapp record);
 
     int updateByPrimaryKey(Blogaapp record);
-
+ 
+    /**
+     * 获取app分页查询信息
+     * @param beforelimit 前抑制点
+     * @param afterlimit 后抑制点
+     * @return
+     */
 	List<Blogaapp> getAllApp(@Param("beforelimit") Integer beforelimit,@Param("afterlimit")  Integer afterlimit);
 
+	/**
+	 * 总共度多少数据
+	 * @return
+	 */
 	int howmanyapp();
 
+	/**
+	 * 根据名称查询对应app
+	 * @param appname 名称
+	 * @return
+	 */
 	Blogaapp selectappByName(@Param("appname") String appname);
 
 	

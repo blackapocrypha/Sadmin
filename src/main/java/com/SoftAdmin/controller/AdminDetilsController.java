@@ -26,6 +26,7 @@ public class AdminDetilsController {
 	@Resource
 	private SoftAdminService SoftAdminService;
 	
+	//获取管理员信息
 	@RequestMapping(path = "getAllAdminDetils")
 	@ResponseBody
 	public Map<String,Object> getAllAdminDetils(String username) {
@@ -49,7 +50,7 @@ public class AdminDetilsController {
 		return null;	
 	}
 	
-	//updateAdmindetilsByphone
+	//更新管理员信息
 	@RequestMapping(path = "updateAdmindetilsByphone")
 	public String updateUdetilsByUphone(Admindetils admindetils) {
 

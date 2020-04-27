@@ -28,5 +28,10 @@ public interface SoftpageMapper {
 
     int updateByPrimaryKey(Softpage record);
 
+    /**
+     * 更新软件
+     * @param sp 软件
+     * @return
+     */
 	int updateSoft(Softpage sp);
 }

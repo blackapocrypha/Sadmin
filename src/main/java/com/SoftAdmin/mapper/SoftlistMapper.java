@@ -28,9 +28,26 @@ public interface SoftlistMapper {
 
     int updateByPrimaryKey(Softlist record);
 
+
+    /**
+     * 分页查询软件
+     * @param beforelimit 前抑制点
+     * @param afterlimit  后抑制点
+     * @return
+     */
 	List<Softlist> getAllSoft(@Param("beforelimit") Integer beforelimit,@Param("afterlimit") Integer afterlimit);
 
+	/**
+	 * 根据id获取软件
+	 * @param sid id
+	 * @return
+	 */
 	Softlist getSoftDis(@Param("sid") String sid);
 
+	/**
+	 * 更新软件
+	 * @param soft 软件
+	 * @return
+	 */
 	int updateSoft(Softlist soft);
 }

@@ -13,6 +13,9 @@ public class SoftPageServiceImpl implements SoftPageService {
 	@Resource
 	private SoftpageMapper softpageMapper;
 
+	/**
+	 * 更新软件
+	 */
 	@Override
 	public boolean updateSoft(Softpage sp) {
 		// TODO Auto-generated method stub

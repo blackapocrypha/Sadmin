@@ -28,12 +28,31 @@ public interface BlogMusictalkMapper {
 
     int updateByPrimaryKey(BlogMusictalk record);
 
+    /**
+     * 分页查询音乐留言
+     * @param beforelimit 前抑制点
+     * @param afterlimit  后抑制点
+     * @return
+     */
 	List<BlogMusictalk> getAllToolMessage(@Param("beforelimit") Integer beforelimit,@Param("afterlimit") Integer afterlimit);
 
+	/**
+	 * 总共多少数据
+	 * @return
+	 */
 	int howmanymessages();
 
+	/**
+	 * 获取所有id
+	 * @return
+	 */
 	List<BlogMusictalk> selectAllIdAndTime();
 
+	/**
+	 * 根据id数组获取对应信息
+	 * @param idlist id列表
+	 * @return
+	 */
 	List<BlogMusictalk> selectAllChosenByid(@Param("idlist") List<Integer> idlist);
 
 	

@@ -28,9 +28,24 @@ public interface BlogmusicMapper {
 
     int updateByPrimaryKey(Blogmusic record);
 
+    /**
+     * 分页查询获取音乐信息
+     * @param beforelimit 前抑制点
+     * @param afterlimit  后抑制点
+     * @return
+     */
 	List<Blogmusic> getAllmusic(@Param("beforelimit") Integer beforelimit,@Param("afterlimit")  Integer afterlimit);
 
+	/**
+	 * 共计多少数据
+	 * @return
+	 */
 	int howmanymusic();
 
+	/**
+	 * 根据名称获取对应信息
+	 * @param appname 名称
+	 * @return
+	 */
 	Blogmusic selectmusicByName(@Param("appname")  String appname);
 }

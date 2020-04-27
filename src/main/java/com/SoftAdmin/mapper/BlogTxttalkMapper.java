@@ -29,12 +29,31 @@ public interface BlogTxttalkMapper {
 
     int updateByPrimaryKey(BlogTxttalk record);
 
+    /**
+     * 分页查询博客电子书界面留言
+     * @param beforelimit 前抑制点
+     * @param afterlimit  后抑制点
+     * @return
+     */
 	List<BlogTxttalk> getAllToolMessage(@Param("beforelimit") Integer beforelimit,@Param("afterlimit")  Integer afterlimit);
 
+	/**
+	 * 总共多少数据
+	 * @return
+	 */
 	int howmanymessages();
 
+	/**
+	 * 获取所有id
+	 * @return
+	 */
 	List<BlogTxttalk> selectAllIdAndTime();
 
+	/**
+	 * 根据id数组获取对应信息
+	 * @param idlist id列表
+	 * @return
+	 */
 	List<BlogTxttalk> selectAllChosenByid(@Param("idlist") List<Integer> idlist);
 
 

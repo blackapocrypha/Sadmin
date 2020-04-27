@@ -28,9 +28,24 @@ public interface BlogagameMapper {
 
     int updateByPrimaryKey(Blogagame record);
 
+    /**
+     * 获取安卓游戏分页查询信息
+     * @param beforelimit 前抑制点
+     * @param afterlimit  后抑制点
+     * @return
+     */
 	List<Blogagame> getAllAgames(@Param("beforelimit")  Integer beforelimit,@Param("afterlimit")  Integer afterlimit);
 
+	/**
+	 * 总共多少数据
+	 * @return
+	 */
 	int howmanyagame();
 
+	/**
+	 * 根据名称查询详情
+	 * @param appname
+	 * @return
+	 */
 	Blogagame selectgameByName(@Param("appname") String appname);
 }
