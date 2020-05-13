@@ -46,7 +46,7 @@ public class BlogAndroidAppMessageServiceImpl implements BlogAndroidAppMessageSe
 	@Override
 	public Boolean updatemessageByid(BlogAapptalk bt) {
 		// TODO Auto-generated method stub
-		return blogAapptalkMapper.updatemessageByid(bt);
+		return blogAapptalkMapper.updateByPrimaryKeySelective(bt)>0;
 	}
 
 	/**

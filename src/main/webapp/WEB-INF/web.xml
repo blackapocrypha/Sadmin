@@ -55,7 +55,7 @@
 		<url-pattern>*.html</url-pattern>
 	</servlet-mapping>
 	 
-<!--  --> 
+	<!--拦截--> 
     <filter>
     	<filter-name>login</filter-name>
     	<filter-class>com.SoftAdmin.filter.LoginFilter</filter-class>

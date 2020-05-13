@@ -76,7 +76,7 @@
     <body>
         <div class="layui-fluid">
             <div class="layui-row">
-                <form class="layui-form" action="${pageContext.request.contextPath}/BmusicM/updatemessageByid" id="formedit"  method="get">
+                <form class="layui-form"  id="formedit"  method="post">
                     <input type="text" class="L_uphone" id="L_uphone" name="btid" required="" lay-verify="email"  >
                     <input type="text" class="L_uphone" id="tname" name="tname" required="" lay-verify="email"  >
                     <input type="text" class="L_uphone" id="imgurl" name="imgurl" required="" lay-verify="email"  ></div>
@@ -122,7 +122,30 @@
 	 
 	  var talktime = $("#talktime").val();
 	  if(talktime!=null){
-			  $("#formedit").submit();	  
+		  var sendData={"btid":$("#btid").val(),"talktime":$("#talktime").val(),"kissid":$("#kissid").val(),"talk":$("#talk").val()};
+		  $.ajax({
+
+				type:'post',
+				url:'${pageContext.request.contextPath}/BmusicM/updatemessageByid',
+				data:sendData,
+				dataType:'json',
+				async: false,
+				success:function(rs){
+					if(rs==1){
+						layer.msg("修改成功");
+						
+						setTimeout(function(){
+							var index = parent.layer.getFrameIndex(window.name);
+							parent.location.reload(); //刷新父页面
+							parent.layer.close(index);
+							
+						},1000);
+						
+					}else{
+						layer.msg("修改失败");
+					}
+				} 	
+			}); 	  
 	  }
    
    });

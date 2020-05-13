@@ -51,13 +51,13 @@
     <body>
         <div class="layui-fluid">
             <div class="layui-row">
-                <form class="layui-form" action="${pageContext.request.contextPath}/Blog/addnewwebsite" id="formedit"  method="get">
+                <form class="layui-form" action="" id="formedit"  method="post">
                    
                     <div class="layui-form-item">
                         <label for="L_email" class="layui-form-label">
                             <span class="x-red"></span>网站名</label>
                         <div class="layui-input-inline">
-                            <input type="text" id="webname" name="webname" required="" lay-verify="email" autocomplete="off" class="layui-input" ></div>
+                            <input type="text" id="webname" name="webname" required="" lay-verify="nikename1" autocomplete="off" class="layui-input" ></div>
                        		
                         <div class="layui-form-mid layui-word-aux">
                             <span class="x-red"></span></div></div>
@@ -65,25 +65,25 @@
                         <label for="L_username" class="layui-form-label">
                             <span class="x-red"></span>网站地址</label>
                         <div class="layui-input-inline">
-                            <input type="text"  id="weburl" name="weburl" required="" lay-verify="nikename" autocomplete="off" class="layui-input"></div>
+                            <input type="text"  id="weburl" name="weburl" required="" lay-verify="nikename2" autocomplete="off" class="layui-input"></div>
                     </div>
                     <div class="layui-form-item">
                         <label for="L_pass" class="layui-form-label">
                             <span class="x-red">*</span>网站介绍</label>
                         <div class="layui-input-inline">
-                           <input type="text"  id="webdis" name="webdis" required="" lay-verify="nikename" autocomplete="off" class="layui-input"></div>
+                           <input type="text"  id="webdis" name="webdis" required="" lay-verify="nikename3" autocomplete="off" class="layui-input"></div>
 								
                         <div class="layui-form-mid layui-word-aux" id="sexdis"></div></div>
                 
                     <div class="layui-form-item">
                         <label for="L_repass" class="layui-form-label"></label>
-                        <input type="button" id="editupdate" value="添加" class="layui-btn">
+                        <input type="button" id="editupdate" value="添加" lay-filter="add" lay-submit="" class="layui-btn">
                        </div>
                 </form>
             </div>
         </div>
    <script>
-   $("#editupdate").click(function(){
+   $("#editupdate1").click(function(){
 	  var webname = $("#webname").val();
 	  var weburl = $("#weburl").val();
 	  var webdis = $("#webdis").val();
@@ -97,6 +97,64 @@
    
    
    </script>
+   
+   
+    <script>layui.use(['form', 'layer','jquery'],
+            function() {
+                $ = layui.jquery;
+                var form = layui.form,
+                layer = layui.layer;
+
+                //自定义验证规则
+                form.verify({
+                    nikename1: function(value) {
+                        if (value.length < 1) {
+                            return '网站名不能为空';
+                        }
+                    },
+                    nikename2: function(value) {
+                        if (value.length < 1) {
+                            return '网站地址不能为空';
+                        }
+                    },  
+                    nikename3: function(value) {
+                        if (value.length < 1) {
+                            return '网站介绍不能为空';
+                        }
+                    }
+                });
+
+                
+                //监听提交
+                form.on('submit(add)',
+                function(data) {
+                  
+                    $.ajax({
+        		type:"POST",
+        		data:data.field,
+        		dataType:"json",
+        		url:"Blog/addnewwebsite",
+        		
+			        })
+			        if(true){
+                    	layer.alert("增加成功", {
+                              icon: 6
+                          },
+                          function() {
+                              //关闭当前frame
+                              xadmin.close();
+
+                              // 可以对父窗口进行刷新 
+                              xadmin.father_reload();
+                          });}	
+                    return false;
+                });
+
+
+            });
+         
+        </script>
+        
     </body>
 
 </html>

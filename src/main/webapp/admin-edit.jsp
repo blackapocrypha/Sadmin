@@ -14,6 +14,7 @@
         <script type="text/javascript" src="./lib/layui/layui.js" charset="utf-8"></script>
         <script type="text/javascript" src="./js/xadmin.js"></script>
         <script src="http://47.94.83.36/tools/js/jquery-3.4.1.min.js"></script>
+        <script src="./js/layui.js"></script>
         <style>
         #L_uphone{
         	display:none;
@@ -72,7 +73,7 @@
             </ul>
             </div>
             <div class="layui-row">
-                <form class="layui-form" action="${pageContext.request.contextPath}/AdminDetil/updateAdmindetilsByphone" id="formedit"  method="post">
+                <form class="layui-form" id="formedit"  method="post">
                     <input type="text" id="L_uphone" name="username" required="" lay-verify="email"  ></div>
                     <div class="layui-form-item">
                         <label for="L_email" class="layui-form-label">
@@ -113,14 +114,40 @@
             </div>
         </div>
    <script>
+   layui.use(['layer', 'jquery'], function(){
+	   layer = layui.layer //弹层
+	   ,$ = layui.jquery//jquery
+  
    $("#editupdate").click(function(){
 	 
 	   var phone = $('#L_phone').val();
 	    if(!(/^1[3456789]\d{9}$/.test(phone))){ 
-	        alert("手机号码有误，请重填");  
+	    	layer.msg("手机号码有误，请重填");  
 	        return false; 
 	    }else{
-	    	$("#formedit").submit();
+	    	var sendData={"username":$("#L_name").val(),"phone":$("#L_phone").val(),"email":$("#L_mail").val(),"urlimg":$("#L_img").val()};
+	    	 $.ajax({
+	 			type:'POST',
+	 			url:'AdminDetil/updateAdmindetilsByphone',
+	 			data:sendData,
+	 			dataType:'json',
+	 			async: false,
+	 			success:function(rs){
+	 				if(rs==1){			
+	 					layer.msg("修改成功");
+	 					setTimeout(function(){
+	 						var index = parent.layer.getFrameIndex(window.name);
+		 					parent.location.reload(); //刷新父页面
+		 					parent.layer.close(index);
+	 					},1000);
+	 					
+	 				}else{	 					
+	 					layer.msg("修改失败");
+	 				}
+	 			} 	
+	 		});  
+
+	    
 	    } 
 	   
    });
@@ -137,7 +164,8 @@
    	$("#L_img").val(img);
    	
    }
-
+   
+   });
    </script>
     </body>
 

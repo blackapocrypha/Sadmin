@@ -22,18 +22,14 @@
         	#L_uphone{
         	display:none;}
         </style>
-        <script>
-    
-        
-        
-        </script>
         </head>
     
     <body>
         <div class="layui-fluid">
             <div class="layui-row">
-                <form class="layui-form" id="" action="users/updatePasswordByUsername" method="post">
-                 <input type="text" id="L_uphone" name="username" required="" value="${param.username}"  lay-verify="email"  ></div>
+             
+                <form class="layui-form" id="addform"   method="post">
+                 <input type="text" id="L_uphone" name="username" required="" value="${param.username}"  ></div>
                     <div class="layui-form-item">
                         <label for="L_username" class="layui-form-label">账号</label>
                         <div class="layui-input-inline">
@@ -42,68 +38,76 @@
                    
                     <div class="layui-form-item">
                         <label for="L_pass" class="layui-form-label">
-                            <span class="x-red">*</span>新密码</label>
+                            <span class="x-red">*</span>密码</label>
                         <div class="layui-input-inline">
-                            <input type="password" id="L_pass" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
+                            <input type="password" id="L_pass"  required="" lay-verify="pass" autocomplete="off" class="layui-input"></div>
                         <div class="layui-form-mid layui-word-aux">6到16个字符</div></div>
                     <div class="layui-form-item">
                         <label for="L_repass" class="layui-form-label">
                             <span class="x-red">*</span>确认密码</label>
                         <div class="layui-input-inline">
-                            <input type="password" id="L_repass" name="password" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
+                            <input type="password" id="L_repass" name="password" required="" lay-verify="repass" autocomplete="off" class="layui-input"></div>
                     </div>
+                    
                     <div class="layui-form-item">
                         <label for="L_repass" class="layui-form-label"></label>
-                        <button class="layui-btn" id="updatepass">更新</button></div>
-                        </div>
+                        <button  type="button" id="updatepass" class="layui-btn" type="button" lay-filter="add" lay-submit="">修改</button></div>
+                
                 </form>
             </div>
         </div>
-        <script>
+               <script>
+        layui.use(['layer', 'jquery'], function(){
+     	   layer = layui.layer //弹层
+     	   ,$ = layui.jquery//jquery
+     	   
+     
         $("#updatepass").click(function(){
         	
         	if($("#L_pass").val()==$("#L_repass").val()){
-        		$("#formpass").submit();
+        		var sendData = {"username":$("#L_uphone").val(),"password":$("#L_pass").val()};
+        		$.ajax({
+    	 			type:'POST',    	 			
+    	 			url:'users/updatePasswordByUsername',
+    	 			data:sendData,
+    	 			dataType:'json',
+    	 			async: false,
+    	 			success:function(rs){
+    	 				if(rs==1){			
+    	     		 		
+    	 					layer.msg("修改成功");
+    	     		 		setTimeout(function(){
+    	     		 		
+    	     		 		var index = parent.layer.getFrameIndex(window.name);
+							parent.location.reload(); //刷新父页面
+							parent.layer.close(index);
+    	     		 		
+    	     		 		},1000);
+    							
+    							
+    						
+    	     		 	
+    	 				}else{	 					
+    	 					layer.msg("修改失败");
+    	 					return false;
+    	 				}
+    	 			} 	
+    	 		});  
+
         	}else{
+        		layer.msg("两次密码不匹配");
         		return false;
         	}
-        	setTimeout(function(){
-    			// 关闭当前页面
-    			document.body.removeChild($("#layui-layer1"));
-    		},2000);
         	
-        })
+        	
+        	
+        });
+        
+        
+        });
         </script>
-       <script>layui.use(['form', 'layer'],
-            function() {
-                $ = layui.jquery;
-                var form = layui.form,
-                layer = layui.layer;
-
-                //监听提交
-                form.on('submit(save)',
-                function(data) {
-                    console.log(data);
-                    //发异步，把数据提交给php
-                    layer.alert("修改成功", {
-                        icon: 6
-                    },
-                    function() {
-                        // 获得frame索引
-                        var index = parent.layer.getFrameIndex(window.name);
-                        //关闭当前frame
-                        parent.layer.close(index);
-                    });
-                    return false;
-                });
-
-            });</script><!--  -->
-        <script>var _hmt = _hmt || []; (function() {
-                var hm = document.createElement("script");
-                hm.src = "https://hm.baidu.com/hm.js?b393d153aeb26b46e9431fabaf0f6190";
-                var s = document.getElementsByTagName("script")[0];
-                s.parentNode.insertBefore(hm, s);
-            })();</script>
+      
+       
     </body>
 
 </html>

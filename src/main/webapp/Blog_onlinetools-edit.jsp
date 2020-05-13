@@ -51,13 +51,13 @@
     <body>
         <div class="layui-fluid">
             <div class="layui-row">
-                <form class="layui-form" action="${pageContext.request.contextPath}/Blog/updateToolsByid" id="formedit"  method="get">
-                    <input type="text" id="L_uphone" name="nid" required="" lay-verify="email"  ></div>
+                <form class="layui-form"  id="formedit"  method="post">
+                    <input type="text" id="L_uphone" name="nid" required=""  ></div>
                     <div class="layui-form-item">
                         <label for="L_email" class="layui-form-label">
                             <span class="x-red">*</span>id</label>
                         <div class="layui-input-inline">
-                            <input type="text" id="nid"  required="" lay-verify="email" autocomplete="off" class="layui-input" disabled="disabled"></div>
+                            <input type="text" id="nid"  required=""  autocomplete="off" class="layui-input" disabled="disabled"></div>
                        		
                         <div class="layui-form-mid layui-word-aux">
                             <span class="x-red">*不可变更</span></div></div>
@@ -65,20 +65,20 @@
                         <label for="L_username" class="layui-form-label">
                             <span class="x-red">*</span>网站名称</label>
                         <div class="layui-input-inline">
-                            <input type="text"  id="webname" name="webname" required="" lay-verify="nikename" autocomplete="off" class="layui-input"></div>
+                            <input type="text"  id="webname" name="webname" required="" lay-verify="nikename1" autocomplete="off" class="layui-input"></div>
                     </div>
                     <div class="layui-form-item">
                         <label for="L_pass" class="layui-form-label">
                             <span class="x-red"></span>网站地址</label>
                         <div class="layui-input-inline">
-                           <input type="text"  id="weburl" name="weburl" required="" lay-verify="nikename" autocomplete="off" class="layui-input"></div>
+                           <input type="text"  id="weburl" name="weburl" required="" lay-verify="nikename2" autocomplete="off" class="layui-input"></div>
 								
                         <div class="layui-form-mid layui-word-aux" id="sexdis"></div></div>
                     <div class="layui-form-item">
                         <label for="L_repass" class="layui-form-label">
                             <span class="x-red"></span>网站介绍</label>
                         <div class="layui-input-inline">
-                            <input type="text"  id="webdis" name="webdis" required="" lay-verify="nikename" autocomplete="off" class="layui-input"></div>
+                            <input type="text"  id="webdis" name="webdis" required="" lay-verify="nikename3" autocomplete="off" class="layui-input"></div>
                      <span class="x-red" id="ageerror"></span></div>
                     <div class="layui-form-item">
                         <label for="L_repass" class="layui-form-label"></label>
@@ -88,20 +88,50 @@
             </div>
         </div>
    <script>
+   
+   
+   
+   
    $("#editupdate").click(function(){
 	  var webname = $("#webname").val();
 	  var weburl = $("#weburl").val();
 	  var webdis = $("#webdis").val();
 	 
+	  
+	  
 	  if(webname!=null&&weburl!=null&&webdis!=null){
-			  $("#formedit").submit();	  
+		  var sendData={"nid":$("#L_uphone").val(),"webname":webname,"weburl":weburl,"webdis":webdis};
+		  $.ajax({
+				type:'get',
+				url:'Blog/updateToolsByid',
+				data:sendData,
+				dataType:'json',
+				async: false,
+				success:function(rs){
+					if(rs==1){
+						layer.msg("修改成功");
+						
+						setTimeout(function(){
+							var index = parent.layer.getFrameIndex(window.name);
+							parent.location.reload(); //刷新父页面
+							parent.layer.close(index);
+							
+						},1000);
+						
+					}else{
+						layer.msg("修改失败");
+					}
+				} 	
+			});   
 	  }
 	 
 	   
-   });
+   });/**/
    
    
    </script>
+  
+   
     </body>
 
 </html>

@@ -17,13 +17,14 @@ public class UdetilsController {
 	private UdetilService udetilService;
 	
 	@RequestMapping(path = "updateUdetilsByUphone")
+	@ResponseBody
 	public String updateUdetilsByUphone(Udetils udetils) {
 
 		boolean flag = udetilService.updateUdetilsByUphone(udetils);
 		if(flag) {
-			return "redirect:/status/editsuccess.html";
+			return "1";
 		}else {
-			return "redirect:/status/editerror.html";
+			return "0";
 		}
 	}
 	

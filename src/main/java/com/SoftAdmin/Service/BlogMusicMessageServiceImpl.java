@@ -61,7 +61,7 @@ public class BlogMusicMessageServiceImpl implements BlogMusicMessageService {
 	@Override
 	public Boolean updatemessageByid(BlogMusictalk bt) {
 		// TODO Auto-generated method stub
-		return BlogMusictalkMapper.updateByPrimaryKey(bt)>0;
+		return BlogMusictalkMapper.updateByPrimaryKeySelective(bt)>0;
 	}
 
 	/**

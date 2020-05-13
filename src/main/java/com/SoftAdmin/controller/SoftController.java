@@ -63,6 +63,7 @@ public class SoftController {
 		
 		//更新软件
 		@RequestMapping(path = "updateSoft")
+		@ResponseBody
 		public String updateSoft(Softlist soft) {
 			boolean flag = softListService.updateSoft(soft);
 			Softpage sp = new Softpage();
@@ -71,9 +72,9 @@ public class SoftController {
 			sp.setUrl(soft.getImgurl());
 			boolean flag1 = softPageService.updateSoft(sp);
 			if(flag && flag1) {
-				return "redirect:/status/editsuccess.html";
+				return "1";
 			}else {
-				return "redirect:/status/editerror.html";
+				return "0";
 			}
 		}
 	

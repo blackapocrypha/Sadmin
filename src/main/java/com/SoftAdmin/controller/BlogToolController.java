@@ -66,11 +66,12 @@ public class BlogToolController {
 		
 		//更新编辑
 		@RequestMapping(path = "updateToolsByid")
+		@ResponseBody
 		public String updateToolsByid(Blogtools blogtools) {
 			Boolean flag = blogToolsService.updateToolsByid(blogtools);
-			if(flag) {return "redirect:/status/editsuccess.html";}
+			if(flag) {return "1";}
 			else {
-				return "redirect:/status/editerror.html";
+				return "0";
 			}
 		}	
 		
@@ -89,9 +90,9 @@ public class BlogToolController {
 		@ResponseBody
 		public String deleteWeb(Integer nid) {
 			Boolean flag = blogToolsService.deleteWeb(nid);
-			if(flag) {return "yes";}
+			if(flag) {return "1";}
 			else {
-				return "no";
+				return "0";
 			}
 		}
 		

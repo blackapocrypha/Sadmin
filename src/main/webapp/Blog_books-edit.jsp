@@ -53,7 +53,7 @@
     <body>
         <div class="layui-fluid">
             <div class="layui-row">
-                <form class="layui-form" action="${pageContext.request.contextPath}/BBook/updatebookByid" id="formedit"  method="get">
+                <form class="layui-form"  id="formedit"  method="post">
                     <input type="text" id="L_uphone" name="nid" required="" lay-verify="email"  ></div>
                     <div class="layui-form-item">
                         <label for="L_email" class="layui-form-label">
@@ -116,7 +116,32 @@
 	  var appdis = $("#appdis").val();
 	  var appdownurl = $("#appdownurl").val();
 	  if(appname!=null&&appimgurl!=null&&appdis!=null&&appdownurl!=null){
-			  $("#formedit").submit();	  
+		  var sendData={"nid":$("#L_uphone").val(),"appname":appname,"appimgurl":appimgurl,"appdis":appdis,"appdownurl":appdownurl};
+		  $.ajax({
+			
+				type:'post',
+				url:'${pageContext.request.contextPath}/BBook/updatebookByid',
+				data:sendData,
+				dataType:'json',
+				async: false,
+				success:function(rs){
+					if(rs==1){
+						layer.msg("修改成功");
+						
+						setTimeout(function(){
+							var index = parent.layer.getFrameIndex(window.name);
+							parent.location.reload(); //刷新父页面
+							parent.layer.close(index);
+							
+						},1000);
+						
+					}else{
+						layer.msg("修改失败");
+					}
+				} 	
+			}); 	    
+		  
+		  
 	  }
    
    });

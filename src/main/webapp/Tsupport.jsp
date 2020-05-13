@@ -56,7 +56,7 @@
                      +"<td class='td-manage'>"
                      
                      +"&nbsp;&nbsp;&nbsp;<a title='编辑'  onclick=\"xadmin.open('编辑','T-edit.jsp?tid="+item.tid+"',600,400)\" href='javascript:;'>"
-                     +" <img id='editpen' src='images/penedit.png'> </a>"
+                     +" <button  type='button' class='layui-btn'>编辑</button></a>"
                      +"</td>"    
                   	 +"</tr>");	
      		});//each1 end

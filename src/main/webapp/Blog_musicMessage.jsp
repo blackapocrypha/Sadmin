@@ -307,23 +307,32 @@ for(var i=1;i<=4;i++){
       }
 
       function checkdelete(obj){
-    	  if(confirm("确定要删除？")){
-    		  $.ajax({
-    			  type:"POST",
-    			  url:"BmusicM/deletemessage",
-    			  data:{"nid":obj},
-    			  async:true,
-    			  success:function(rs){
-    				  if(rs=="yes"){
-    					  alert("删除成功");
-    					  window.location.reload();
-    				  }else{
-    					  alert("删除失败");
-    					  window.location.reload();
-    				  }
-    			  }
-    		  })
-    	  }/**/
+    	  layer.open({
+    		  title: '删除'
+    		  ,content: '确认删除？将无法找回'
+    		  ,yes: function(index, layero){
+    			  $.ajax({
+        			  type:"POST",
+        			  url:"BmusicM/deletemessage",
+        			  data:{"nid":obj},
+        			  dataType:"json",
+        			  async:"true",
+        			  success:function(rs){
+        			  if(rs==1){
+        					  layer.msg("删除成功");
+        				  setTimeout(function(){
+        					  window.location.reload();
+        				  },800);
+                         				
+        				  }else{
+        					 
+        				  }
+        			  }
+        		  })	 
+    			}
+    	  }); 
+    	  
+    	
       }
     </script>
 </html>

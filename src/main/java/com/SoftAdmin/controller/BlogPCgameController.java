@@ -66,12 +66,13 @@ public class BlogPCgameController {
 	
 	//更新
 		@RequestMapping(value = "updatepcgameByid")
+		@ResponseBody
 		public String updatepcgameByid(Blogpcgame bpcgame) {
 			Boolean flag = blogPCgameService.updatepcgameByid(bpcgame);
 			if(flag) {
-				return "redirect:/status/editsuccess.html";
+				return "1";
 			}else {
-				return "redirect:/status/editerror.html";
+				return "0";
 			}
 		}
 	
@@ -92,9 +93,9 @@ public class BlogPCgameController {
 		@ResponseBody
 		public String deletegames(Integer nid) {
 			Boolean flag = blogPCgameService.deletegames(nid);
-			if(flag) {return "yes";}
+			if(flag) {return "1";}
 			else {
-				return "no";
+				return "0";
 			}}
 		
 		

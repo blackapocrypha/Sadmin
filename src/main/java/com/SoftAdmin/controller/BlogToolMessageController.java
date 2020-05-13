@@ -66,12 +66,13 @@ public class BlogToolMessageController {
 	
 	//跟据id更新
 	@RequestMapping(value = "updatemessageByid")
+	@ResponseBody
 	public String updatemessageByid(BlogTalk bt) {
 		Boolean flag = blogToolMessageService.updatemessageByid(bt);
 		if(flag){
-			return "redirect:/status/editsuccess.html";
+			return "1";
 		}else{
-			return "redirect:/status/editerror.html";
+			return "0";
 		}
 	}
 	
@@ -133,9 +134,9 @@ public class BlogToolMessageController {
 	public String deleteMessage(Integer nid) {
 		Boolean flag = blogToolMessageService.deleteMessage(nid);
 		if(flag) {
-			return "yes";
+			return "1";
 		}else {
-			return "no";
+			return "0";
 		}
 	}
 	

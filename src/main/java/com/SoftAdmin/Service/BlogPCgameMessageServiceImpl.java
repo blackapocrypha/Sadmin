@@ -59,7 +59,7 @@ public class BlogPCgameMessageServiceImpl implements BlogPCgameMessageService {
 	@Override
 	public Boolean updatemessageByid(BlogPcgametalk bt) {
 		// TODO Auto-generated method stub
-		return blogPcgametalkMapper.updateByPrimaryKey(bt)>0;
+		return blogPcgametalkMapper.updateByPrimaryKeySelective(bt)>0;
 	}
 
 

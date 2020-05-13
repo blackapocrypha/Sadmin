@@ -62,12 +62,13 @@ public class BlogAGameController {
 	}
 	
 	@RequestMapping("updateagameByid")
+	@ResponseBody
 	public String updateagameByid(Blogagame bg) {
 		Boolean flag = blogAGameService.updateagameByid(bg);
 		if(flag) {
-			return "redirect:/status/editsuccess.html";
+			return "1";
 		}else {
-			return "redirect:/status/editerror.html";
+			return "0";
 		}
 	}
 	
@@ -88,9 +89,9 @@ public class BlogAGameController {
 	@ResponseBody
 	public String deleteWeb(Integer nid) {
 		Boolean flag = blogAGameService.deletegame(nid);
-		if(flag) {return "yes";}
+		if(flag) {return "1";}
 		else {
-			return "no";
+			return "0";
 		}}
 	
 	  //模糊搜索按钮

@@ -58,7 +58,7 @@ public class BlogAndroidGameMessageServiceImpl implements BlogAndroidGameMessage
 	@Override
 	public Boolean updatemessageByid(BlogAgametalk bt) {
 		// TODO Auto-generated method stub
-		return blogAgametalkMapper.updateByPrimaryKey(bt)>0;
+		return blogAgametalkMapper.updateByPrimaryKeySelective(bt)>0;
 	}
 
 	/**

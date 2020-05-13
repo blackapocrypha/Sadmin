@@ -64,12 +64,13 @@ public class BlogBooksController {
 	
 	//根据id修改
 	@RequestMapping(value = "updatebookByid")
+	@ResponseBody
 	public String updatebookByid(Blogtxt bt) {
 		Boolean flag =  blogBooksService.updatebookByid(bt);
 		if(flag) {
-			return "redirect:/status/editsuccess.html";
+			return "1";
 		}else {
-			return "redirect:/status/editerror.html";
+			return "0";
 		}
 	}
 	
@@ -90,9 +91,9 @@ public class BlogBooksController {
 		@ResponseBody
 		public String deletebooks(Integer nid) {
 			Boolean flag = blogBooksService.deletebooks(nid);
-			if(flag) {return "yes";}
+			if(flag) {return "1";}
 			else {
-				return "no";
+				return "0";
 		}}
 		
 		//模糊搜索按钮

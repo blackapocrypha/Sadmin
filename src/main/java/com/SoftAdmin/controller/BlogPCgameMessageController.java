@@ -66,12 +66,13 @@ public class BlogPCgameMessageController {
 	
 	//跟据id更新
 	@RequestMapping(value = "updatemessageByid")
+	@ResponseBody
 	public String updatemessageByid(BlogPcgametalk bt) {
 		Boolean flag = blogPCgameMessageService.updatemessageByid(bt);
 		if(flag){
-			return "redirect:/status/editsuccess.html";
+			return "1";
 		}else{
-			return "redirect:/status/editerror.html";
+			return "0";
 		}
 	}
 
@@ -135,9 +136,9 @@ public class BlogPCgameMessageController {
 	public String deletemessage(Integer nid) {
 		Boolean flag = blogPCgameMessageService.deletemessage(nid);
 		if(flag) {
-			return "yes";
+			return "1";
 		}else {
-			return "no";
+			return "0";
 		}
 	}	
 

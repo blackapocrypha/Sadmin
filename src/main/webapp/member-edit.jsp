@@ -52,7 +52,7 @@
     <body>
         <div class="layui-fluid">
             <div class="layui-row">
-                <form class="layui-form" action="${pageContext.request.contextPath}/Udetil/updateUdetilsByUphone" id="formedit"  method="get">
+                <form class="layui-form" action="" id="formedit"  method="post">
                     <input type="text" id="L_uphone" name="uphone" required="" lay-verify="email"  ></div>
                     <div class="layui-form-item">
                         <label for="L_email" class="layui-form-label">
@@ -97,7 +97,28 @@
 	 
 	  if(sex =="男" || sex =="女"){
 		  if(Number(age)>=0 && Number(age)<=150){
-			  $("#formedit").submit();
+			  var sendData={"uphone":$("#L_email").val(),"ufname":$("#L_ufname").val(),"usex":$("#L_sex").val(),"uage":$("#L_age").val()};
+		    	 $.ajax({
+		 			type:'POST',
+		 			url:'${pageContext.request.contextPath}/Udetil/updateUdetilsByUphone',
+		 			data:sendData,
+		 			dataType:'json',
+		 			async: false,
+		 			success:function(rs){
+		 				if(rs==1){			
+		 					layer.msg("修改成功");
+		 					setTimeout(function(){
+		 						var index = parent.layer.getFrameIndex(window.name);
+			 					parent.location.reload(); //刷新父页面
+			 					parent.layer.close(index);
+		 					},1000);
+		 					
+		 				}else{	 					
+		 					layer.msg("修改失败");
+		 				}
+		 			} 	
+		 		});  
+
 		  }else{
 			  $("#ageerror").html("年龄不合法");
 			  setTimeout(function(){$("#ageerror").html("");},3000);

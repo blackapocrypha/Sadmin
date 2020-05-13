@@ -56,11 +56,11 @@
     <body>
         <div class="layui-fluid">
             <div class="layui-row">
-                <form class="layui-form" action="${pageContext.request.contextPath}/Ts/updateSupport" id="formedit"  method="get">
+                <form class="layui-form"  id="formedit"  method="post">
                     <input type="text" id="T_tid" name="tid" required="" lay-verify="email"  ></div>
                     <div class="layui-form-item">
                         <label for="L_email" class="layui-form-label">
-                            <span class="x-red">*</span>软件id</label>
+                            <span class="x-red">*</span>id</label>
                         <div class="layui-input-inline">
                             <input type="text" id="T_id" required="" lay-verify="email" autocomplete="off" class="layui-input" disabled="disabled"></div>
                        		
@@ -147,8 +147,30 @@
 	  var T_imgurl = $("#T_imgurl").val();
 	 
 	  if(T_name!=null&&T_type!=null&&T_dis!=null&&T_typetwo!=null&&T_e!=null&T_url!=null&&T_imgurl!=null){
-	  $("#formedit").submit();
 		 
+		  var formData={"tid":$("#T_tid").val(),"tname":$("#T_name").val(),"ttype":$("#T_type").val(),"ttypetwo":$("#T_typetwo").val(),"tdis":$("#T_dis").val(),"tenglist":$("#T_e").val(),"turl":$("#T_url").val(),"imgurl":$("#T_imgurl").val()};         
+		  $.ajax({
+				url: '${pageContext.request.contextPath}/Ts/updateSupport',
+				type: 'POST',
+				data: formData,
+				success: function(rs) {	
+					if(rs==1){
+						
+						layer.msg("修改成功");
+						setTimeout(function(){
+							
+							var index = parent.layer.getFrameIndex(window.name);
+							parent.location.reload(); //刷新父页面
+							parent.layer.close(index);	
+						},1000);
+						
+					}else{
+						layer.msg("修改失败");
+					}				
+				}
+			});
+	  
+	  
 		  }
    });
    

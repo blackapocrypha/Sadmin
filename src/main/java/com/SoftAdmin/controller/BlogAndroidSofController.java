@@ -64,12 +64,13 @@ public class BlogAndroidSofController {
 	
 	//更新软件
 	@RequestMapping("updateappByid")
+	@ResponseBody
 	public String updateappByid(Blogaapp ba) {
 		Boolean flag = blogAndroidSofService.updateappByid(ba);
 		if(flag) {
-			return "redirect:/status/editsuccess.html";
+			return "1";
 		}else {
-			return "redirect:/status/editerror.html";
+			return "0";
 		}
 		
 	}
@@ -90,9 +91,9 @@ public class BlogAndroidSofController {
 	@ResponseBody
 	public String deleteWeb(Integer nid) {
 		Boolean flag = blogAndroidSofService.deleteapp(nid);
-		if(flag) {return "yes";}
+		if(flag) {return "1";}
 		else {
-			return "no";
+			return "0";
 		}}
 	
 	//模糊搜索按钮

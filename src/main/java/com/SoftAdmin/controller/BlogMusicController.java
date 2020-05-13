@@ -64,12 +64,13 @@ public class BlogMusicController {
 	
 	//更新music
 	@RequestMapping(value = "updateMusic")
+	@ResponseBody
 	public String updateMusic(Blogmusic bmusic) {
 		Boolean flag = blogMusicService.updateMusic(bmusic);
 		if(flag) {
-			return "redirect:/status/editsuccess.html";
+			return "1";
 		}else {
-			return "redirect:/statuc/editerror.html";
+			return "0";
 		}
 	}
 	
@@ -90,9 +91,9 @@ public class BlogMusicController {
 	@ResponseBody
 	public String deletemusic(Integer nid) {
 		Boolean flag = blogMusicService.deletemusic(nid);
-		if(flag) {return "yes";}
+		if(flag) {return "1";}
 		else {
-			return "no";
+			return "0";
 		}}
 	
 	  //模糊搜索按钮

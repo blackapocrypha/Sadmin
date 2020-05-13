@@ -9,6 +9,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -70,7 +71,7 @@ public class SoftAdminController {
 	private  String uname=null;
 	
 	//登录实现
-	@RequestMapping(path = "adminLogin")
+	@PostMapping(path = "adminLogin")
 	@ResponseBody
 	public JsonResult adminLogin(Softadmin softadmin,HttpSession session) {
 		//加密
@@ -183,16 +184,16 @@ public class SoftAdminController {
 	
 	//超级管理员修改密码
 	@RequestMapping(value = "updatePasswordByUsername")
+	@ResponseBody
 	public String updatePasswordByUsername(Softadmin soft){
 		//密码加密
 		soft.setPassword(MD5Utils.GetMD5Code(soft.getPassword(),true));
-		System.out.println("username is :"+soft.getUsername());
-		System.out.println(soft.getPassword());
+		
 		Boolean flag = softAdminService.updatePasswordByUsername(soft);
 		if(flag) {
-			return "redirect:../status/editsuccess.html";
+			return "1";
 		}else {
-			return "redirect:../status/editerror.html";
+			return "2";
 		}
 		
 	}

@@ -13,11 +13,7 @@
         <script type="text/javascript" src="./lib/layui/layui.js" charset="utf-8"></script>
         <script type="text/javascript" src="./js/xadmin.js"></script>
         <script src="http://47.94.83.36/tools/js/jquery-3.4.1.min.js"></script>
-        <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
-        <!--[if lt IE 9]>
-            <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
-            <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
+        <script src="layui/layui.js"></script>
         <style>
         	#L_uphone{
         	display:none;}
@@ -32,7 +28,7 @@
     <body>
         <div class="layui-fluid">
             <div class="layui-row">
-                <form class="layui-form" id="" action="SAC/updatePasswordByUsername" method="post">
+                <form class="layui-form"  method="post">
                  <input type="text" id="L_uphone" name="username" required="" value="${param.username}"  lay-verify="email"  ></div>
                     <div class="layui-form-item">
                         <label for="L_username" class="layui-form-label">账号</label>
@@ -54,56 +50,62 @@
                     </div>
                     <div class="layui-form-item">
                         <label for="L_repass" class="layui-form-label"></label>
-                        <button class="layui-btn" id="updatepass">更新</button></div>
+                        <button class="layui-btn" type="button" id="updatepass">更新</button></div>
                         </div>
                 </form>
             </div>
         </div>
         <script>
+        layui.use(['layer', 'jquery'], function(){
+     	   layer = layui.layer //弹层
+     	   ,$ = layui.jquery//jquery
+     	   
+     
         $("#updatepass").click(function(){
         	
         	if($("#L_pass").val()==$("#L_repass").val()){
-        		$("#formpass").submit();
+        		var sendData = {"username":$("#L_uphone").val(),"password":$("#L_pass").val()};
+        		$.ajax({
+    	 			type:'POST',    	 			
+    	 			url:'SAC/updatePasswordByUsername',
+    	 			data:sendData,
+    	 			dataType:'json',
+    	 			async: false,
+    	 			success:function(rs){
+    	 				if(rs==1){			
+    	     		 		
+    	 					layer.msg("修改成功");
+    	     		 		setTimeout(function(){
+    	     		 		
+    	     		 		var index = parent.layer.getFrameIndex(window.name);
+							parent.location.reload(); //刷新父页面
+							parent.layer.close(index);
+    	     		 		
+    	     		 		},1000);
+    							
+    							
+    						
+    	     		 	
+    	 				}else{	 					
+    	 					layer.msg("修改失败");
+    	 					return false;
+    	 				}
+    	 			} 	
+    	 		});  
+
         	}else{
+        		layer.msg("两次密码不匹配");
         		return false;
         	}
-        	setTimeout(function(){
-    			// 关闭当前页面
-    			document.body.removeChild($("#layui-layer1"));
-    		},2000);
         	
-        })
+        	
+        	
+        });
+        
+        
+        });
         </script>
-       <script>layui.use(['form', 'layer'],
-            function() {
-                $ = layui.jquery;
-                var form = layui.form,
-                layer = layui.layer;
-
-                //监听提交
-                form.on('submit(save)',
-                function(data) {
-                    console.log(data);
-                    //发异步，把数据提交给php
-                    layer.alert("修改成功", {
-                        icon: 6
-                    },
-                    function() {
-                        // 获得frame索引
-                        var index = parent.layer.getFrameIndex(window.name);
-                        //关闭当前frame
-                        parent.layer.close(index);
-                    });
-                    return false;
-                });
-
-            });</script><!--  -->
-        <script>var _hmt = _hmt || []; (function() {
-                var hm = document.createElement("script");
-                hm.src = "https://hm.baidu.com/hm.js?b393d153aeb26b46e9431fabaf0f6190";
-                var s = document.getElementsByTagName("script")[0];
-                s.parentNode.insertBefore(hm, s);
-            })();</script>
+      
     </body>
 
 </html>

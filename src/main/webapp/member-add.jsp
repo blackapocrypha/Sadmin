@@ -54,18 +54,23 @@
                     </div>
                     <div class="layui-form-item">
                         <label for="L_repass" class="layui-form-label"></label>
-                        <button class="layui-btn" onclick="adduser()" lay-filter="add" lay-submit="">增加</button></div>
+                        <button class="layui-btn"  lay-filter="add" lay-submit="">增加</button></div>
                 </form>
             </div>
         </div>
         <script>
+       
         //添加用户
         function adduser(){
         	if($("#L_phone").val()==null){
         		return false;
+        	}else{
+	
         	}
         	
         }
+        
+       
         </script>
         <script>layui.use(['form', 'layer','jquery'],
             function() {
@@ -88,23 +93,18 @@
                     }
                 });
 
+                
                 //监听提交
                 form.on('submit(add)',
                 function(data) {
-                    console.log(data.field);
-                    //$('#addform').submit();
-                    //发异步，把数据提交给php
+                  
                     $.ajax({
         		type:"POST",
         		data:data.field,
         		dataType:"json",
         		url:"users/addNewUser",
-        		success:function(rs){
-        			if(rs=="true"){
-        							
-			        			}//end if
-			        		}
-			        	})
+        		
+			        })
 			        if(true){
                     	layer.alert("增加成功", {
                               icon: 6
@@ -119,18 +119,11 @@
                     return false;
                 });
 
+
             });
-        function addU(obj){
-        	
-        }
-       
+         
         </script>
-        <script>var _hmt = _hmt || []; (function() {
-                var hm = document.createElement("script");
-                hm.src = "https://hm.baidu.com/hm.js?b393d153aeb26b46e9431fabaf0f6190";
-                var s = document.getElementsByTagName("script")[0];
-                s.parentNode.insertBefore(hm, s);
-            })();</script>
+        
     </body>
 
 </html>

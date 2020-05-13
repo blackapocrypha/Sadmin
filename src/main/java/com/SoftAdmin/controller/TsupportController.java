@@ -34,12 +34,13 @@ public class TsupportController {
 	
 	
 	@RequestMapping(path = "updateSupport")
+	@ResponseBody
 	public String updateSupport(Tsupport tsupport){
 		boolean  flag = tsupportService.updateSupport(tsupport);
 		if(flag) {
-			return "redirect:/status/editsuccess.html";
+			return "1";
 		}else {
-			return "redirect:/status/editerror.html";
+			return "0";
 		}
 		
 	}

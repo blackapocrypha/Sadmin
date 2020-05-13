@@ -52,7 +52,7 @@
                      +"<td class='td-manage'>"
                      
                      +"&nbsp;&nbsp;&nbsp;<a title='编辑'  onclick=\"xadmin.open('编辑','soft-edit.jsp?sid="+item.sid+"',600,400)\" href='javascript:;'>"
-                     +" <img id='editpen' src='images/penedit.png'> </a>"
+                     +" <button style='margin-left:10px;' type='button' class='layui-btn'>编辑</button> </a>"
                      +"</td>"    
                   	 +"</tr>");	
      		});//each1 end
@@ -282,38 +282,13 @@ for(var i=1;i<=4;i++){
 
 
 
-      /*用户-删除*/
-      function member_del(obj,id){
-          layer.confirm('确认要删除吗？',function(index){
-              //发异步删除数据
-              $(obj).parents("tr").remove();
-              layer.msg('已删除!',{icon:1,time:1000});
-          });
-      }
-
+   
 
 
       
       
-      function checkdelete(obj){
-    	  if(confirm("确定要删除？")){
-    		  $.ajax({
-    			  type:"POST",
-    			  url:"users/deleteUser",
-    			  data:{"username":obj},
-    			  dataType:"json",
-    			  async:"true",
-    			  success:function(rs){
-    				  if(rs){
-    					  alert("success");
-    					  window.location.reload();
-    				  }else{
-    					  alert("error");
-    				  }
-    			  }
-    		  })
-    	  }/**/
-      }
+   
+    
     </script>
 </html>
 </html>

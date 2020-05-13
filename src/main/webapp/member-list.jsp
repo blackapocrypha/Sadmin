@@ -315,23 +315,34 @@ for(var i=1;i<=4;i++){
       
       
       function checkdelete(obj){
-    	  if(confirm("确定要删除？")){
-    		  $.ajax({
-    			  type:"POST",
-    			  url:"users/deleteUser",
-    			  data:{"username":obj},
-    			  dataType:"json",
-    			  async:"true",
-    			  success:function(rs){
-    				  if(rs){
-    					  alert("success");
-    					  window.location.reload();
-    				  }else{
-    					  alert("error");
-    				  }
-    			  }
-    		  })
-    	  }/**/
+    	  layer.open({
+    		  title: '删除'
+    		  ,content: '确认删除？将无法找回'
+    		  ,yes: function(index, layero){
+    			  $.ajax({
+        			  type:"POST",
+        			  url:"users/deleteUser",
+        			  data:{"username":obj},
+        			  dataType:"json",
+        			  async:"true",
+        			  success:function(rs){
+        			  if(rs){
+        					  layer.msg("删除成功");
+        				  setTimeout(function(){
+        					  window.location.reload();
+        				  },800);
+                         				
+        				  }else{
+        					 
+        				  }
+        			  }
+        		  })	 
+    			}
+    	  });  
+    	  
+    	  
+    	  
+    	  
       }
     </script>
 </html>

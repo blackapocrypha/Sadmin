@@ -52,7 +52,7 @@
     <body>
         <div class="layui-fluid">
             <div class="layui-row">
-                <form class="layui-form" action="${pageContext.request.contextPath}/Soft/updateSoft" id="formedit"  method="get">
+                <form class="layui-form" id="formedit"  method="post">
                     <input type="text" id="S_sid" name="sid" required="" lay-verify="email"  ></div>
                     <div class="layui-form-item">
                         <label for="L_email" class="layui-form-label">
@@ -83,7 +83,7 @@
                      <span class="x-red" id="ageerror"></span></div>
                     <div class="layui-form-item">
                         <label for="L_repass" class="layui-form-label"></label>
-                        <input type="submit" id="editupdate" onclick="fresh()" value="更新" class="layui-btn">
+                        <input type="button" id="editupdate"  value="更新" class="layui-btn">
                        </div>
                 </form>
                 
@@ -103,14 +103,36 @@
             </div>
         </div>
    <script>
-   function fresh(){history.go(0);}
+   
    
    $("#editupdate").click(function(){
 	  var S_name = $("#S_name").val();
 	  var S_type = $("#S_type").val();
 	 
-	  if(sex !=null && S_type !=null){
-	  $("#formedit").submit();
+	  if(S_type !=null && S_name !=null){
+		  
+		  var formData={"sid":$("#S_id").val(),"softname":$("#S_name").val(),"softtype":$("#S_type").val(),"imgurl":$("#S_img").val()};
+		  $.ajax({
+				url: 'Soft/updateSoft',
+				type: 'POST',
+				data: formData,
+				
+				success: function(rs) {	
+					if(rs==1){
+						
+						layer.msg("修改成功");
+						setTimeout(function(){
+							
+							var index = parent.layer.getFrameIndex(window.name);
+							parent.location.reload(); //刷新父页面
+							parent.layer.close(index);	
+						},1000);
+						
+					}else{
+						layer.msg("修改失败");
+					}				
+				}
+			});
 		 
 		  }
    });

@@ -88,13 +88,14 @@ public class UsersController {
 	
 	//更新密码按钮
 	@RequestMapping(value = "updatePasswordByUsername")
+	@ResponseBody
 	public String updatePasswordByUsername(Users user) {
 		user.setPassword(MD5Utils.GetMD5Code(user.getPassword(), true));
 		boolean flag = usersService.updatePasswordByUsername(user);
 		if(flag) {
-			return "redirect:/status/editsuccess.html";
+			return "1";
 		}else {
-			return "redirect:/status/editerror.html";
+			return "0";
 		}
 	}
 	
@@ -142,5 +143,8 @@ public class UsersController {
 		}
 		return map;
 	}
+	
+	
+	
 	
 }

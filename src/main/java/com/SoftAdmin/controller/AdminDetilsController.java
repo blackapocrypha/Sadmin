@@ -52,14 +52,15 @@ public class AdminDetilsController {
 	
 	//更新管理员信息
 	@RequestMapping(path = "updateAdmindetilsByphone")
+	@ResponseBody
 	public String updateUdetilsByUphone(Admindetils admindetils) {
 
 		boolean flag = adminDetilsService.updateAdmindetilsByphone(admindetils);
 		boolean flag1 = SoftAdminService.updateAdmindetilsByphone(admindetils.getUsername(),admindetils.getUrlimg());
 		if(flag && flag1) {
-			return "redirect:/status/editsuccess.html";
+			return "1";
 		}else {
-			return "redirect:/status/editerror.html";
+			return "2";
 		}
 	}
 }

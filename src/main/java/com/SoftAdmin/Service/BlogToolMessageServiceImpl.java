@@ -57,7 +57,8 @@ public class BlogToolMessageServiceImpl implements BlogToolMessageService {
 	@Override
 	public Boolean updatemessageByid(BlogTalk bt) {
 		// TODO Auto-generated method stub
-		return blogTalkMapper.updateByPrimaryKey(bt)>0;
+		//return blogTalkMapper.updateByPrimaryKey(bt)>0;
+		return blogTalkMapper.updateByPrimaryKeySelective(bt)>0;
 	}
 
 	/**

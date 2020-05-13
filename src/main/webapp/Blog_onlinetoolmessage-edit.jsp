@@ -76,10 +76,10 @@
     <body>
         <div class="layui-fluid">
             <div class="layui-row">
-                <form class="layui-form" action="${pageContext.request.contextPath}/BToolMessage/updatemessageByid" id="formedit"  method="get">
-                    <input type="text" class="L_uphone" id="L_uphone" name="btid" required="" lay-verify="email"  >
-                    <input type="text" class="L_uphone" id="tname" name="tname" required="" lay-verify="email"  >
-                    <input type="text" class="L_uphone" id="imgurl" name="imgurl" required="" lay-verify="email"  ></div>
+                <form class="layui-form"  id="formedit"  method="post">
+                    <input type="text" class="L_uphone" id="L_uphone" name="btid" required=""  >
+                    <input type="text" class="L_uphone" id="tname" name="tname" required="" >
+                    <input type="text" class="L_uphone" id="imgurl" name="imgurl" required=""  ></div>
                     <div class="layui-form-item">
                         <label for="L_email" class="layui-form-label">
                             <span class="x-red">*</span>id</label>
@@ -122,7 +122,33 @@
 	 
 	  var talktime = $("#talktime").val();
 	  if(talktime!=null){
-			  $("#formedit").submit();	  
+			 
+		  var sendData={"btid":$("#btid").val(),"talktime":$("#talktime").val(),"kissid":$("#kissid").val(),"talk":$("#talk").val()};
+		  $.ajax({
+			 
+				type:'post',
+				url:'${pageContext.request.contextPath}/BToolMessage/updatemessageByid',
+				data:sendData,
+				dataType:'json',
+				async: false,
+				success:function(rs){
+					if(rs==1){
+						layer.msg("修改成功");
+						
+						setTimeout(function(){
+							var index = parent.layer.getFrameIndex(window.name);
+							parent.location.reload(); //刷新父页面
+							parent.layer.close(index);
+							
+						},1000);
+						
+					}else{
+						layer.msg("修改失败");
+					}
+				} 	
+			}); 	  
+		  
+		  
 	  }
    
    });
